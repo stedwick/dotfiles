@@ -1,0 +1,38 @@
+Bootstrap Mac
+
+Mac App Store: update and install
+
+# Homebrew: https://brew.sh
+
+# Base
+brew cask install bitwarden dropbox spotify iterm2
+
+# Safari
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool YES
+
+# Undercover: https://www.undercoverhq.com/
+
+# Dropbox: Apps (macOS)
+
+# Terminal
+brew install tmux reattach-to-user-namespace bash-completion liquidprompt ack gpg pinentry-mac
+
+# Dev
+brew install chruby ruby-install node
+brew cask install visual-studio-code google-chrome imageoptim ngrok
+npm install -g browser-sync
+ruby-install ruby # Update .ruby-version
+
+# Dropbox: Dotfiles (bashrc dln function)
+
+# Python (for tmuxp)
+easy_install --user pip
+pip install --user tmuxp
+
+# Bitwarden: SSH & GPG Keys
+gpg --edit-key philip.brocoum@gmail.com
+> trust
+> 5
+gpgconf --kill gpg-agent
+
+# Janus for Vim: https://github.com/carlhuda/janus

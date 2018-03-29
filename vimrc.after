@@ -1,0 +1,26 @@
+" Base
+set mouse=a
+set wrap
+set hidden
+
+" Save on focus lost
+set autowriteall
+autocmd FocusLost * silent! wa
+
+" Tab to next/previous file
+nnoremap <Tab> :e#<CR>
+
+" Paste and auto reformat
+nnoremap p p`[v`]=
+nnoremap P P`[v`]=
+" Paste without reformatting
+nnoremap <Leader>p p
+nnoremap <Leader>P P
+
+" Quickly save & quit
+nmap <Leader>q :xa<CR>
+
+" Single click NERDTree
+let g:NERDTreeMouseMode = 3
+" Don't recomment commented lines
+let NERDSpaceDelims=1
