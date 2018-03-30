@@ -61,12 +61,6 @@ alias gmd="git merge develop"
 alias gss="git stash save"
 alias gsp="git stash pop"
 alias gsl="git stash list"
-alias gmm="git merge master"
-alias gmd="git merge develop"
-
-alias gss="git stash save"
-alias gsp="git stash pop"
-alias gsl="git stash list"
 
 # Automatically add completion for all aliases to commands having completion functions
 [ -r "$HOME/.alias_completion.sh" ] && source "$HOME/.alias_completion.sh"
