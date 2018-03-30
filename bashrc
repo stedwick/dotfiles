@@ -34,16 +34,14 @@ function cd() {
 }
 cd .
 
-# Dotfiles
-function dln() {
-    ln -s "/Users/pbrocoum/Dropbox/Dotfiles/$1" "$HOME/.$1"
-}
-
 # Docker
 alias d="docker"
+alias dc="docker-compose"
+alias dm="docker-machine"
 
 # Git (Deprecated by VS Code?)
 alias g="git"
+
 alias gs="git status"
 alias ga="git add -A"
 alias gd="git diff -w --diff-filter=M"
@@ -64,5 +62,10 @@ alias gss="git stash save"
 alias gsp="git stash pop"
 alias gsl="git stash list"
 
-# Automatically add completion for all aliases to commands having completion functions
+# Dotfiles
+function dln() {
+    ln -s "/Users/pbrocoum/Dropbox/Dotfiles/$1" "$HOME/.$1"
+}
+
+# Add completion for aliases
 [ -r "$HOME/.alias_completion.sh" ] && source "$HOME/.alias_completion.sh"
