@@ -17,7 +17,12 @@ alias a="ack -i -A 5 -B 5"
 
 # Homebrew
 if [ -n "$(type -t brew)" ]; then
-  [ -r "$(brew --prefix)/etc/bash_completion" ] && source "$(brew --prefix)/etc/bash_completion"
+  case "$BASH_VERSION" in
+    4.*) # Bash 4 (brew install bash)
+      [ -r "$(brew --prefix)/share/bash-completion/bash_completion" ] && source "$(brew --prefix)/share/bash-completion/bash_completion" ;;
+    3.*) # Bash 3 (masOS default)
+      [ -r "$(brew --prefix)/etc/bash_completion" ] && source "$(brew --prefix)/etc/bash_completion" ;;
+  esac
   [ -r "$(brew --prefix)/share/liquidprompt" ] && source "$(brew --prefix)/share/liquidprompt"
   [ -r "$(brew --prefix)/share/chruby/chruby.sh" ] && source "$(brew --prefix)/share/chruby/chruby.sh"
 fi

@@ -15,7 +15,7 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 # Dropbox: Apps (macOS)
 
 # Terminal
-brew install tmux reattach-to-user-namespace bash-completion liquidprompt ack gpg pinentry-mac
+brew install tmux reattach-to-user-namespace bash liquidprompt ack gpg pinentry-mac
 
 # Dev
 brew install chruby ruby-install node
