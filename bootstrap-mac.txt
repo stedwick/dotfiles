@@ -30,7 +30,8 @@ gem install tmuxinator
 easy_install --user pip
 pip install --user tmuxp
 
-# Bitwarden: SSH & GPG Keys
+# Bitwarden: My SSH & GPG Keys (also GitHub public key?)
+gpg --import [ example.key ]
 gpg --edit-key philip.brocoum@gmail.com
 > trust
 > 5
