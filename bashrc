@@ -13,7 +13,7 @@ alias c="cat"
 alias e="vim"
 alias l="ls -hAFGa"
 alias ll="ls -lhAFGa"
-alias g="ack -i -A 5 -B 5"
+alias a="ack -i -A 5 -B 5"
 
 # Homebrew
 if [ -n "$(type -t brew)" ]; then
@@ -37,12 +37,16 @@ function dln() {
     ln -s "/Users/pbrocoum/Dropbox/Dotfiles/$1" "$HOME/.$1"
 }
 
+# Docker
+alias d="docker"
+
 # Git (Deprecated by VS Code?)
+alias g="git"
 alias gs="git status"
-alias ga="git add"
+alias ga="git add -A"
 alias gd="git diff -w --diff-filter=M"
 alias gds="git diff -w --diff-filter=M --staged"
-alias gc="git commit -m"
+alias gc="git commit -a -m"
 alias gp="git pull"
 alias gu="git push"
 
