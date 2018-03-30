@@ -29,9 +29,6 @@ function cd() {
 }
 cd .
 
-# Python (for tmuxp)
-export PATH="$PATH:$(python -c 'import site; print(site.USER_BASE)')/bin"
-
 # Dotfiles
 function dln() {
     ln -s "/Users/pbrocoum/Dropbox/Dotfiles/$1" "$HOME/.$1"

@@ -22,6 +22,7 @@ brew install chruby ruby-install node
 brew cask install visual-studio-code google-chrome imageoptim ngrok
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
+gem install tmuxinator
 
 # Dropbox: Dotfiles (bashrc dln function)
 
