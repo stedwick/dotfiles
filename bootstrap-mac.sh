@@ -16,8 +16,8 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 # Terminal
 brew install bash tmux reattach-to-user-namespace liquidprompt ack git gpg pinentry-mac
 
-# Dev
-brew install chruby ruby-install node
+# Dev (install Xcode from App Store)
+brew install chruby ruby-install node postgresql
 brew cask install visual-studio-code google-chrome imageoptim ngrok
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
@@ -35,6 +35,9 @@ curl -L https://bit.ly/janus-bootstrap | bash
 
 # Docker: https://store.docker.com
 brew cask install docker dockstation
+
+# Ruby on Rails
+gem install rails # `gem pristine --all` if needed
 
 # Completions
 brew install bash-completion@2 brew-cask-completion tmuxinator-completion gem-completion bundler-completion rake-completion rails-completion docker-completion docker-compose-completion docker-machine-completion
