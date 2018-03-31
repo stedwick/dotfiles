@@ -40,6 +40,6 @@ brew cask install docker dockstation
 gem install rails # `gem pristine --all` if needed
 
 # Completions
-brew install bash-completion@2 brew-cask-completion tmuxinator-completion gem-completion bundler-completion rake-completion rails-completion docker-completion docker-compose-completion docker-machine-completion
+brew install bash-completion@2 brew-cask-completion tmuxinator-completion gem-completion bundler-completion rake-completion rails-completion spring-completion docker-completion docker-compose-completion docker-machine-completion
 
 # Dropbox: Dotfiles (link w/ bashrc dln function)
