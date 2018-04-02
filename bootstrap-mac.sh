@@ -36,7 +36,7 @@ gpgconf --kill gpg-agent
 curl -L https://bit.ly/janus-bootstrap | bash
 
 # Docker: https://store.docker.com
-brew cask install docker dockstation
+brew cask install docker # dockstation
 
 # Ruby on Rails
 gem install rails # `gem pristine --all` if needed
