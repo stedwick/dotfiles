@@ -17,7 +17,7 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 brew install bash tmux reattach-to-user-namespace liquidprompt ack git gpg pinentry-mac
 
 # Dev (install Xcode from App Store)
-brew install chruby ruby-install node postgresql overmind
+brew install chruby ruby-install node postgresql overmind # mosh?
 brew cask install visual-studio-code google-chrome imageoptim ngrok
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
