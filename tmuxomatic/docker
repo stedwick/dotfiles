@@ -1,15 +1,14 @@
 window docker
 
-000
-000
-A1B
-A1C
-A1D
+0000
+0000
+11BB
+11CC
+11DD
 
 D foc
 
-0 run exec watch --interval 10 --no-title 'docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Mounts}}\t{{.Networks}}\t{{.Labels}}"'
-A run exec watch -n 10 -t 'docker ps --all --format "table {{.Names}}\t{{.Status}}"'
+0 run exec watch --interval 10 --no-title 'docker ps --all --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Mounts}}\t{{.Networks}}\t{{.Labels}}"'
 1 run exec watch -n 10 -t 'docker image ls --format "table {{.Repository}}\t{{.Tag}}"'
 B run exec watch -n 10 -t 'docker volume ls --format "table {{.Name}}"'
 C run exec watch -n 10 -t 'docker network ls --format "table {{.Name}}" | ack --invert-match "bridge|host|none"'
