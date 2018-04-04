@@ -2,3 +2,5 @@
 "\e[A":history-search-backward
 ## arrow down
 "\e[B":history-search-forward
+## tab tab completion
+TAB: menu-complete

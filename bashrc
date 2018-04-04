@@ -4,7 +4,6 @@ export VISUAL="vim"
 export HISTCONTROL="ignoreboth"
 export GPG_TTY="$(tty)" # for GPG
 shopt -s histappend
-bind '"\t"':"menu-complete"
 
 # Aliases
 alias x="exit"
