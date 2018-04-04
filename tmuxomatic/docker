@@ -9,7 +9,7 @@ window docker
 D foc
 
 0 run exec watch --interval 10 --no-title 'docker ps --all --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Mounts}}\t{{.Networks}}\t{{.Labels}}"'
-1 run exec watch -n 10 -t 'docker image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}"'
+1 run exec watch -n 10 -t 'docker image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.Size}}"'
 B run exec watch -n 10 -t 'docker volume ls --format "table {{.Name}}"'
 C run exec watch -n 10 -t 'docker network ls --format "table {{.Name}}" | ack --invert-match "bridge|host|none"'
 D run exec watch -n 10 -t 'tmux ls | cut -d " " -f 1,2,3 | column -t'
