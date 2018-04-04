@@ -6,7 +6,8 @@
         "bashrc": "shellscript",
         "*.conf*": "shellscript",
         "liquidpromptrc": "shellscript",
-        "vimrc*": "viml"
+        "vimrc*": "viml",
+        ".pryrc": "ruby"
     },
     "editor.wordWrap": "on",
     "git.autofetch": true,
