@@ -6,7 +6,6 @@ export GPG_TTY="$(tty)" # for GPG
 shopt -s histappend
 
 # Aliases
-alias x="exit"
 alias z="clear"
 alias c="cat"
 alias e="vim"
