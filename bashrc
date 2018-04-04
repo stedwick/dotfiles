@@ -36,6 +36,8 @@ cd .
 alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
+alias up="docker-compose up -d"
+alias down="docker-compose down"
 
 # Git (Deprecated by VS Code?)
 alias g="git"
