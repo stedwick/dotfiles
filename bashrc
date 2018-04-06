@@ -6,7 +6,6 @@ export GPG_TTY="$(tty)" # for GPG
 shopt -s histappend
 
 # Aliases
-alias x="exit"
 alias z="clear"
 alias c="cat"
 alias e="vim"
@@ -22,7 +21,19 @@ if [ -n "$(type -t brew)" ]; then
     3.*) # Bash 3 (masOS default)
       [ -r "$(brew --prefix)/etc/bash_completion" ] && source "$(brew --prefix)/etc/bash_completion" ;;
   esac
-  [ -r "$(brew --prefix)/share/liquidprompt" ] && source "$(brew --prefix)/share/liquidprompt"
+  if [ -r "$(brew --prefix)/share/liquidprompt" ]; then
+    source "$(brew --prefix)/share/liquidprompt"
+    function _phils_prompt() {
+      # Add active docker-machine to prompt
+      if [ "$DOCKER_MACHINE_NAME" = "docker" ]; then
+        export LP_PS1_POSTFIX="\[\033[33m\]azure\[\033[00m\] $ "
+      else
+        export LP_PS1_POSTFIX=""
+      fi
+      _lp_set_prompt
+    }
+    export PROMPT_COMMAND="_phils_prompt"
+  fi
   [ -r "$(brew --prefix)/share/chruby/chruby.sh" ] && source "$(brew --prefix)/share/chruby/chruby.sh"
 fi
 
