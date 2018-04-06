@@ -36,7 +36,9 @@ gpgconf --kill gpg-agent
 curl -L https://bit.ly/janus-bootstrap | bash
 
 # Docker: https://store.docker.com
-brew cask install docker # dockstation
+brew cask install docker
+docker volume create portainer_data
+docker run --rm -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data --name portainer portainer/portainer --no-auth
 
 # Ruby on Rails
 gem install rails # `gem pristine --all` if needed
