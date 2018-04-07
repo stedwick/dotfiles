@@ -67,6 +67,7 @@ alias gl="git log"
 alias gb="git branch"
 alias gw="git show"
 
+alias gco="git checkout"
 alias gcm="git checkout master"
 alias gcd="git checkout develop"
 alias gmm="git merge master"
