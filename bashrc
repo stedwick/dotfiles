@@ -51,6 +51,8 @@ alias build="docker-compose build"
 alias up="docker-compose up -d"
 alias down="docker-compose down"
 alias prune="docker rmi \$(docker images -f \"dangling=true\" -q)"
+alias run="docker run --rm -it"
+alias crun="docker-compose run --rm"
 
 # Git (Deprecated by VS Code?)
 alias g="git"
@@ -70,6 +72,7 @@ alias gw="git show"
 alias gco="git checkout"
 alias gcm="git checkout master"
 alias gcd="git checkout develop"
+alias gm="git merge"
 alias gmm="git merge master"
 alias gmd="git merge develop"
 
