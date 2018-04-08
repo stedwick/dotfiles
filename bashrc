@@ -3,7 +3,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 export GPG_TTY="$(tty)" # for GPG
 export HISTCONTROL="ignoreboth"
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 shopt -s histappend
 
 # Aliases
@@ -32,7 +32,7 @@ if [ -n "$(type -t brew)" ]; then
         export LP_PS1_POSTFIX=""
       fi
     }
-    export PROMPT_COMMAND="_phils_prompt; $PROMPT_COMMAND"
+    PROMPT_COMMAND="_phils_prompt; $PROMPT_COMMAND"
   fi
   [ -r "$(brew --prefix)/share/chruby/chruby.sh" ] && source "$(brew --prefix)/share/chruby/chruby.sh"
 fi
