@@ -287,3 +287,6 @@ bind-key -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M"
 
 # Use Bash 4
 set-option -g default-shell "/usr/local/bin/bash"
+
+# Don't monitor activity
+set -g monitor-activity off
