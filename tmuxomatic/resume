@@ -1,9 +1,8 @@
 window resume
 
-001
+0
 
 dir ~/dev/resume
-0 foc
 
 0 run git status
 
