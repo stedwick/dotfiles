@@ -21,6 +21,7 @@ brew install chruby ruby-install node postgresql tmate wget # mosh?
 brew cask install visual-studio-code google-chrome imageoptim ngrok
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
+# sudo vim /etc/hosts
 
 # Tmuxomatic: https://github.com/oxidane/tmuxomatic
 pip-python3 install tmuxomatic # (?)
