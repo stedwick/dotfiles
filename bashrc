@@ -3,6 +3,8 @@ export EDITOR="vim"
 export VISUAL="vim"
 export GPG_TTY="$(tty)" # for GPG
 export HISTCONTROL="ignoreboth"
+export HISTSIZE="1000000"
+export HISTFILESIZE="1000000"
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 shopt -s histappend
 

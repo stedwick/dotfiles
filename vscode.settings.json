@@ -1,6 +1,8 @@
 // "$HOME/Library/Application Support/Code/User/settings.json"
 {
     "editor.fontSize": 15,
+    // "editor.formatOnPaste": true,
+    "editor.wordWrap": "on",
     "files.autoSave": "onFocusChange",
     "files.associations": {
         "bashrc": "shellscript",
@@ -9,9 +11,16 @@
         "vimrc*": "viml",
         "*pryrc": "ruby"
     },
-    "editor.wordWrap": "on",
     "git.autofetch": true,
     "git.confirmSync": false,
+    "emmet.includeLanguages": {
+        "erb": "html"
+    },
+    "beautify.language": {
+        "html": {
+            "ext":["erb"]
+        }
+    },
     "gitlens.currentLine.scrollable": false,
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
