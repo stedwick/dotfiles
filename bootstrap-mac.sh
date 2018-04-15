@@ -14,11 +14,11 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 # Dropbox: Apps (macOS)
 
 # Terminal
-brew install bash tmux reattach-to-user-namespace liquidprompt ack git tig git-flow gpg pinentry-mac
+brew install bash tmux reattach-to-user-namespace liquidprompt ack git tig gpg pinentry-mac
 
 # Dev (install Xcode from App Store)
-brew install chruby ruby-install node postgresql tmate wget # mosh?
-brew cask install visual-studio-code google-chrome imageoptim ngrok
+brew install chruby ruby-install node postgresql tmate wget git-flow # mosh?
+brew cask install visual-studio-code google-chrome imageoptim ngrok slack atom
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
 # sudo vim /etc/hosts
