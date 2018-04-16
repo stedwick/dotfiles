@@ -10,8 +10,8 @@ window resume
 dir ~/dev/resume
 2 foc
 
-0 run browser-sync start --proxy 'philipbrocoum.dev' --files 'app'
-1 run docker-compose logs -f
+0 run echo browser-sync start --proxy 'philipbrocoum.dev' --files 'app'
+1 run echo docker-compose logs -f
 
 0 run git status
 
