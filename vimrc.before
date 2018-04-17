@@ -1,2 +1,4 @@
 " Snippets are annoying
 " call janus#disable_plugin('snipmate')
+
+set clipboard=unnamed
