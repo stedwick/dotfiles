@@ -18,7 +18,7 @@ brew install bash tmux reattach-to-user-namespace liquidprompt ack git tig gpg p
 
 # Dev (install Xcode from App Store)
 brew install chruby ruby-install node postgresql tmate wget git-flow # mosh?
-brew cask install visual-studio-code google-chrome imageoptim ngrok slack atom
+brew cask install visual-studio-code google-chrome imageoptim ngrok slack
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
 # sudo vim /etc/hosts
