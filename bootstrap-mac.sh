@@ -6,7 +6,7 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Base (with https://www.undercoverhq.com/)
-brew cask install bitwarden dropbox spotify iterm2 firefox undercover
+brew cask install bitwarden dropbox spotify iterm2 firefox undercover caffeine
 
 # Safari
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool YES
