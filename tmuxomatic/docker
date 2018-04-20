@@ -2,11 +2,11 @@ window docker
 
 00000
 00000
-00000
 111BC
 111BC
 111BC
 111BC
+DDDDD
 
 C foc
 
@@ -14,4 +14,4 @@ C foc
 1 run exec watch -n 10 -t 'docker image ls --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}\t{{.ID}}" | ~/.tmuxomatic/scripts/sort_with_header.sh'
 B run exec watch -n 10 -t 'docker volume ls --format "table {{.Name}}" | ~/.tmuxomatic/scripts/sort_with_header.sh'
 C run exec watch -n 10 -t 'docker network ls --format "table {{.Name}}" | ack --invert-match "bridge|host|none" | ~/.tmuxomatic/scripts/sort_with_header.sh'
-
+D run exec watch -n 120 -t 'docker-machine ls'

@@ -35,11 +35,11 @@ window docker
 
 00000
 00000
-00000
 111BC
 111BC
 111BC
 111BC
+DDDDD
 
 C foc
 
@@ -47,21 +47,4 @@ C foc
 1 run exec watch -n 10 -t 'docker image ls --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}\t{{.ID}}" | ~/.tmuxomatic/scripts/sort_with_header.sh'
 B run exec watch -n 10 -t 'docker volume ls --format "table {{.Name}}" | ~/.tmuxomatic/scripts/sort_with_header.sh'
 C run exec watch -n 10 -t 'docker network ls --format "table {{.Name}}" | ack --invert-match "bridge|host|none" | ~/.tmuxomatic/scripts/sort_with_header.sh'
-
-window azure
-
-00000
-00000
-00000
-111BC
-111BC
-111BC
-111BC
-
-C foc
-
-0 run eval \$(docker-machine env docker) && exec watch --interval 30 --no-title 'docker ps --all --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Networks}}" | ~/.tmuxomatic/scripts/sort_with_header.sh'
-1 run eval \$(docker-machine env docker) && exec watch -n 30 -t 'docker image ls --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}\t{{.ID}}" | ~/.tmuxomatic/scripts/sort_with_header.sh'
-B run eval \$(docker-machine env docker) && exec watch -n 30 -t 'docker volume ls --format "table {{.Name}}" | ~/.tmuxomatic/scripts/sort_with_header.sh'
-C run eval \$(docker-machine env docker) && exec watch -n 30 -t 'docker network ls --format "table {{.Name}}" | ack --invert-match "bridge|host|none" | ~/.tmuxomatic/scripts/sort_with_header.sh'
-
+D run exec watch -n 120 -t 'docker-machine ls'
