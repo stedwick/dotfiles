@@ -71,6 +71,7 @@ alias gu="git push"
 alias gl="git log"
 alias gb="git branch"
 alias gw="git show"
+alias gt="git tag"
 
 alias gco="git checkout"
 alias gcm="git checkout master"
