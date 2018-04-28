@@ -57,6 +57,9 @@ alias prune="docker rmi \$(docker images -f \"dangling=true\" -q)"
 alias run="docker run --rm -it"
 alias crun="docker-compose run --rm"
 
+alias portainer="docker run -d --rm --name portainer -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer --no-auth"
+alias adminer="docker run -d --rm --name adminer -p 8080:8080 --network resume adminer"
+
 # Git
 alias g="git"
 
