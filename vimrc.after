@@ -24,3 +24,6 @@ nmap <Leader>q :xa<CR>
 let g:NERDTreeMouseMode = 3
 " Don't recomment commented lines
 let NERDSpaceDelims=1
+
+:nmap <silent> <leader>d <Plug>DashSearch
+

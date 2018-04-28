@@ -26,6 +26,8 @@ ruby-install ruby # Update .ruby-version
 # Tmuxomatic: https://github.com/oxidane/tmuxomatic
 pip-python3 install tmuxomatic # (?)
 
+# Dash: https://kapeli.com/dash (Setapp?)
+
 # Bitwarden: My SSH & GPG keys (also GitHub public key?)
 gpg --import [ example.key ]
 gpg --edit-key philip.brocoum@gmail.com

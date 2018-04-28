@@ -4,3 +4,6 @@
 [submodule "janus/vim-tmux-focus-events"]
 	path = janus/vim-tmux-focus-events
 	url = https://github.com/tmux-plugins/vim-tmux-focus-events.git
+[submodule "janus/dash.vim"]
+	path = janus/dash.vim
+	url = https://github.com/rizzatti/dash.vim.git
