@@ -13,8 +13,6 @@ dir ~/dev/resume
 0 run echo browser-sync start --proxy 'philipbrocoum.localhost' --files 'app'
 1 run echo docker-compose logs -f
 
-0 run git status
-
 window haproxy
 
 0
@@ -41,7 +39,7 @@ window docker
 111BC
 DDDDD
 
-C foc
+D foc
 
 0 run exec watch --interval 10 --no-title 'docker ps --all --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Networks}}" | ~/.tmuxomatic/scripts/sort_with_header.sh'
 1 run exec watch -n 10 -t 'docker image ls --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}\t{{.ID}}" | ~/.tmuxomatic/scripts/sort_with_header.sh'
