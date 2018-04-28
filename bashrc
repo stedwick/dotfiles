@@ -62,9 +62,11 @@ alias g="git"
 
 alias gs="git status"
 alias ga="git add -A"
+alias gaa="git add"
 alias gd="git diff -w --diff-filter=M"
 alias gds="git diff -w --diff-filter=M --staged"
 alias gc="git commit -a -m"
+alias gcc="git commit -m"
 alias gp="git pull"
 alias gu="git push"
 
@@ -73,16 +75,23 @@ alias gb="git branch"
 alias gw="git show"
 alias gt="git tag"
 
-alias gco="git checkout"
 alias gcm="git checkout master"
 alias gcd="git checkout develop"
-alias gm="git merge"
-alias gmm="git merge master"
-alias gmd="git merge develop"
+alias gcs="git checkout staging"
+alias gcp="git checkout production"
 
 alias gss="git stash save"
 alias gsp="git stash pop"
 alias gsl="git stash list"
+
+alias gm="git merge"
+alias gmm="git merge master"
+alias gmd="git merge develop"
+alias gms="git merge staging"
+alias gmp="git merge production"
+fuction gmnn() {
+  git merge "$1" --no-commit --no-ff
+}
 
 # Dotfiles
 function dln() {
@@ -91,3 +100,4 @@ function dln() {
 
 # Add completion for aliases
 [ -r "$HOME/.alias_completion.sh" ] && source "$HOME/.alias_completion.sh"
+
