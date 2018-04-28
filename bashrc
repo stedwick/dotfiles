@@ -89,7 +89,7 @@ alias gmm="git merge master"
 alias gmd="git merge develop"
 alias gms="git merge staging"
 alias gmp="git merge production"
-fuction gmnn() {
+function gmnn() {
   git merge "$1" --no-commit --no-ff
 }
 
