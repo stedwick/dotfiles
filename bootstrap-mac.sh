@@ -7,6 +7,7 @@
 
 # Base (with https://www.undercoverhq.com/)
 brew cask install bitwarden dropbox spotify iterm2 firefox undercover caffeine
+mkdir ~/bin
 
 # Safari
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool YES
@@ -50,3 +51,4 @@ gem install rails # `gem pristine --all` if needed
 brew install bash-completion@2 brew-cask-completion gem-completion bundler-completion rake-completion rails-completion spring-completion docker-completion docker-compose-completion docker-machine-completion
 
 # Dropbox: Dotfiles (link w/ bashrc dln function)
+ln -s ~/Dropbox/Dotfiles/docker-dashboard/sort_with_header.sh ~/bin/
