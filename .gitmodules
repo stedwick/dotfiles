@@ -7,3 +7,6 @@
 [submodule "janus/dash.vim"]
 	path = janus/dash.vim
 	url = https://github.com/rizzatti/dash.vim.git
+[submodule "docker-dashboard"]
+	path = docker-dashboard
+	url = git@github.com:stedwick/docker-dashboard.git
