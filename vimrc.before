@@ -1,4 +1,5 @@
 " Snippets are annoying
 " call janus#disable_plugin('snipmate')
 
-set clipboard=unnamed
+" Default to macOS clipboard?
+" set clipboard=unnamed
