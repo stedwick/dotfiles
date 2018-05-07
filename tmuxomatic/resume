@@ -42,7 +42,7 @@ DDDDD
 D foc
 
 0 run exec watch --interval 10 --no-title 'docker ps --all --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Networks}}" | sort_with_header.sh'
-1 run exec watch -n 10 -t 'docker image ls --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}\t{{.ID}}" | sort_with_header.sh'
+1 run exec watch -n 10 -t 'docker image ls --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" | ack --invert-match "k8s|kube|pause|etcd" | sort_with_header.sh'
 B run exec watch -n 10 -t 'docker volume ls --format "table {{.Name}}" | sort_with_header.sh'
 C run exec watch -n 10 -t 'docker network ls --format "table {{.Name}}" | ack --invert-match "bridge|host|none" | sort_with_header.sh'
 D run exec watch -n 120 -t 'docker-machine ls'
