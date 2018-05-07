@@ -41,10 +41,10 @@ curl -L https://bit.ly/janus-bootstrap | bash
 
 # Docker: https://store.docker.com
 brew cask install docker
-docker volume create portainer_data
+# docker volume create portainer_data # vol created automatically
 docker run --rm -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data --name portainer portainer/portainer --no-auth
 
-# Ruby on Rails
+# Ruby on Rails (Unneeded thx to Docker?)
 gem install rails # `gem pristine --all` if needed
 
 # Completions
@@ -52,3 +52,11 @@ brew install bash-completion@2 brew-cask-completion gem-completion bundler-compl
 
 # Dropbox: Dotfiles (link w/ bashrc dln function)
 ln -s ~/Dropbox/Dotfiles/docker-dashboard/sort_with_header.sh ~/bin/
+
+# Kubernetes
+brew install caskroom/versions/docker-edge # Edge for K8s?
+# Dashboard user: https://github.com/kubernetes/dashboard/wiki/Creating-sample-user
+kubectl create -f ~/Dropbox/Dotfiles/kube/admin-user.yaml
+kubectl create -f ~/Dropbox/Dotfiles/kube/admin-role.yaml
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
+

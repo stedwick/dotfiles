@@ -29,8 +29,8 @@ if [ -n "$(type -t brew)" ]; then
     source "$(brew --prefix)/share/liquidprompt"
     function _phils_prompt() {
       # Add active docker-machine to prompt
-      if [ "$DOCKER_MACHINE_NAME" = "docker" ]; then
-        export LP_PS1_POSTFIX="\[\033[33m\]azure\[\033[00m\] $ "
+      if [ -n "$DOCKER_MACHINE_NAME" ]; then
+        export LP_PS1_POSTFIX="\[\033[33m\]$DOCKER_MACHINE_NAME\[\033[00m\] $ "
       else
         export LP_PS1_POSTFIX=""
       fi
@@ -46,6 +46,12 @@ function cd() {
   [ -n "$(type -t chruby)" ] && [ -r ".ruby-version" ] && chruby "$(cat .ruby-version)"
 }
 cd .
+
+# Kubernetes
+[ -n "$(type -t kubectl)" ] && source <(kubectl completion bash)
+
+alias k="kubectl"
+alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
 
 # Docker
 alias d="docker"
