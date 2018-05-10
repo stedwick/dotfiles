@@ -15,7 +15,9 @@ alias c="cat"
 alias e="vim"
 alias l="ls -hAFGa"
 alias ll="ls -lhAFGa"
-alias a="ack -i -A 5 -B 5"
+alias a="ack -i"
+alias aa="ack -i -A 5 -B 2"
+alias m="less -FX"
 
 # Homebrew
 if [ -n "$(type -t brew)" ]; then
@@ -40,7 +42,11 @@ if [ -n "$(type -t brew)" ]; then
           ;;
         esac
       fi
-      export LP_PS1_POSTFIX="${postfix}$ "
+      if [ -n "$postfix" ]; then
+        export LP_PS1_POSTFIX="${postfix}$ "
+      else
+        export LP_PS1_POSTFIX=""
+      fi
     }
     PROMPT_COMMAND="_phils_prompt; $PROMPT_COMMAND"
   fi

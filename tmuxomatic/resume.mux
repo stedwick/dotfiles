@@ -32,15 +32,24 @@ dir ~/Dropbox/Dotfiles
 
 window k8s
 
-0
-0
-1
+0A
+0A
+0A
+1B
+1B
+1B
+22
+22
 
 dir ~/dev
-1 foc
+2 foc
 
-0 run watch -n 10 -t 'kubectl get all'
-1 run clear && ls
+0 run exec watch -n 10 -t k8s-svc.sh
+1 run exec watch -n 10 -t 'kubectl get deploy'
+A run exec watch -n 10 -t 'kubectl get po'
+B run echo kubectl get rs
+
+2 run clear && ls
 
 window docker
 

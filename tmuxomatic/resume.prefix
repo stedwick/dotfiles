@@ -30,15 +30,3 @@ dir ~/Dropbox/Dotfiles
 
 0 run clear && git status && git branch && git tag
 
-window k8s
-
-0
-0
-1
-
-dir ~/dev
-1 foc
-
-0 run watch -n 10 -t 'kubectl get all'
-1 run clear && ls
-
