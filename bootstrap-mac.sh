@@ -22,7 +22,14 @@ brew install chruby ruby-install node postgresql tmate wget git-flow # mosh?
 brew cask install visual-studio-code google-chrome imageoptim ngrok slack macsvg
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
+
 # sudo vim /etc/hosts
+# DNSMasq
+brew install dnsmasq
+sudo bash -c 'echo "address=/.localhost/127.0.0.1" > /usr/local/etc/dnsmasq.conf'
+sudo bash -c 'echo "address=/.kube/192.168.99.100" > /usr/local/etc/dnsmasq.conf'
+sudo /usr/local/sbin/dnsmasq
+# Edit DNS in System Prefs, add 127.0.0.1 and 8.8.8.8
 
 # Tmuxomatic: https://github.com/oxidane/tmuxomatic
 pip-python3 install tmuxomatic # (?)
@@ -54,9 +61,8 @@ brew install bash-completion@2 brew-cask-completion gem-completion bundler-compl
 ln -s ~/Dropbox/Dotfiles/docker-dashboard/sort_with_header.sh ~/bin/
 
 # Kubernetes
-brew install caskroom/versions/docker-edge # Edge for K8s?
+# brew install caskroom/versions/docker-edge # Edge for K8s?
 # Dashboard user: https://github.com/kubernetes/dashboard/wiki/Creating-sample-user
-kubectl create -f ~/Dropbox/Dotfiles/kube/admin-user.yaml
-kubectl create -f ~/Dropbox/Dotfiles/kube/admin-role.yaml
-kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
+brew cask install virtualbox
+brew cask install minikube
 

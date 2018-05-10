@@ -28,12 +28,19 @@ if [ -n "$(type -t brew)" ]; then
   if [ -r "$(brew --prefix)/share/liquidprompt" ]; then
     source "$(brew --prefix)/share/liquidprompt"
     function _phils_prompt() {
+      local postfix=""
       # Add active docker-machine to prompt
       if [ -n "$DOCKER_MACHINE_NAME" ]; then
-        export LP_PS1_POSTFIX="\[\033[33m\]$DOCKER_MACHINE_NAME\[\033[00m\] $ "
-      else
-        export LP_PS1_POSTFIX=""
+        postfix="\[\033[33m\]$DOCKER_MACHINE_NAME\[\033[00m\] $postfix"
       fi
+      if [ -n "$(type -t minikube)" -a -n "$DOCKER_HOST" ]; then
+        case "$DOCKER_HOST" in
+          *"$(minikube ip)"*)
+            postfix="\[\033[33m\]minikube\[\033[00m\] $postfix"
+          ;;
+        esac
+      fi
+      export LP_PS1_POSTFIX="${postfix}$ "
     }
     PROMPT_COMMAND="_phils_prompt; $PROMPT_COMMAND"
   fi
@@ -48,7 +55,7 @@ function cd() {
 cd .
 
 # Kubernetes
-[ -n "$(type -t kubectl)" ] &&  source <(kubectl completion bash)
+[ -n "$(type -t kubectl)" ]  && source <(kubectl completion bash)
 [ -n "$(type -t minikube)" ] && source <(minikube completion bash)
 
 function krun() {
@@ -89,7 +96,9 @@ alias gs="git status"
 alias ga="git add -A"
 alias gaa="git add"
 alias gd="git diff -w --diff-filter=M"
+alias gdd="git diff -w"
 alias gds="git diff -w --diff-filter=M --staged"
+alias gdds="git diff -w --staged"
 alias gc="git commit -a -m"
 alias gcc="git commit -m"
 alias gp="git pull"
