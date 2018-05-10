@@ -79,6 +79,7 @@ function kexec() {
 alias k="kubectl"
 alias kg="kubectl get"
 alias kga="kubectl get all"
+alias kdA="kubectl delete deployments,services --all"
 # alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
 
 # Docker
