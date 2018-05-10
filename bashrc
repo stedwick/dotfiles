@@ -48,10 +48,25 @@ function cd() {
 cd .
 
 # Kubernetes
-[ -n "$(type -t kubectl)" ] && source <(kubectl completion bash)
+[ -n "$(type -t kubectl)" ] &&  source <(kubectl completion bash)
+[ -n "$(type -t minikube)" ] && source <(minikube completion bash)
+
+function krun() {
+  local image="$1"
+  shift
+  kubectl run --image="$image" -i -t --rm --restart=Never "${image//_/-}"-"$(echo $RANDOM)" -- "$@"
+}
+
+function kexec() {
+  local pod="$1"
+  shift
+  kubectl exec ${pod#pod/} -i -t -- "$@"
+}
 
 alias k="kubectl"
-alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
+alias kg="kubectl get"
+alias kga="kubectl get all"
+# alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
 
 # Docker
 alias d="docker"

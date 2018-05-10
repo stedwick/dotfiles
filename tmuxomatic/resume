@@ -12,6 +12,7 @@ dir ~/dev/resume
 
 0 run echo browser-sync start --proxy 'philipbrocoum.localhost' --files 'app'
 1 run echo docker-compose logs -f app
+2 run clear && git status && git branch && git tag
 
 window haproxy
 
@@ -19,7 +20,7 @@ window haproxy
 
 dir ~/dev/haproxy
 
-0 run git status
+0 run clear && git status && git branch && git tag
 
 window dotfiles
 
@@ -27,7 +28,7 @@ window dotfiles
 
 dir ~/Dropbox/Dotfiles
 
-0 run git status
+0 run clear && git status && git branch && git tag
 
 window docker
 
