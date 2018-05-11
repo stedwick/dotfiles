@@ -1,4 +1,4 @@
-window res-dev
+window dev
 
 0
 
@@ -6,7 +6,7 @@ dir ~/dev/resume
 
 0 run clear && git status && git branch && git tag
 
-window res-serv
+window serv
 
 1
 2
