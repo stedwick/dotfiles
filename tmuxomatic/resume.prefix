@@ -1,18 +1,26 @@
-window resume
+window res-dev
 
 0
+
+dir ~/dev/resume
+
+0 run clear && git status && git branch && git tag
+
+window res-serv
+
 1
 2
 2
 2
 2
+0
 
 dir ~/dev/resume
-2 foc
+0 foc
 
-0 run echo browser-sync start --proxy 'philipbrocoum.localhost' --files 'app'
-1 run echo docker-compose logs -f app
-2 run clear && git status && git branch && git tag
+1 run echo browser-sync start --proxy 'philipbrocoum.localhost' --files 'app'
+2 run echo docker-compose logs -f app
+0 run clear && git status && git branch && git tag
 
 window haproxy
 

@@ -15,7 +15,7 @@ dir ~/dev
 0 run exec watch -n 10 -t k8s-svc.sh
 1 run exec watch -n 10 -t 'kubectl get deploy'
 A run exec watch -n 10 -t 'kubectl get po'
-B run echo kubectl get rs
+B run exec watch -n 10 -t 'kubectl get no'
 
 2 run clear && ls
 
