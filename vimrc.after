@@ -3,6 +3,9 @@ set mouse=a
 set wrap
 set hidden
 
+" Tabs
+set tabstop=2 shiftwidth=2 expandtab
+
 " Save on focus lost
 set autowriteall
 autocmd FocusLost * silent! wa

@@ -21,6 +21,7 @@ alias m="less -FX"
 
 # Homebrew
 if [ -n "$(type -t brew)" ]; then
+  export PATH="$PATH:$(brew --prefix)/opt/gettext/bin"
   case "$BASH_VERSION" in
     4.*) # Bash 4 (brew install bash)
       [ -r "$(brew --prefix)/share/bash-completion/bash_completion" ] && source "$(brew --prefix)/share/bash-completion/bash_completion" ;;
@@ -105,7 +106,6 @@ alias gs="git status"
 alias ga="git add -A"
 alias gaa="git add"
 alias gd="git diff -w --diff-filter=M"
-alias gdd="git diff -w"
 alias gds="git diff -w --diff-filter=M --staged"
 alias gdds="git diff -w --staged"
 alias gc="git commit -a -m"
