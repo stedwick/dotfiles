@@ -5,7 +5,7 @@ export GPG_TTY="$(tty)" # for GPG
 export HISTCONTROL="ignoreboth"
 export HISTSIZE="1000000"
 export HISTFILESIZE="1000000"
-export PATH="$HOME/bin:$PATH"
+# export PATH="$PATH:$HOME/bin" # included by default?
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 shopt -s histappend
 
@@ -18,6 +18,7 @@ alias ll="ls -lhAFGa"
 alias a="ack -i"
 alias aa="ack -i -A 5 -B 2"
 alias m="less -FX"
+alias j="jobs"
 
 # Homebrew
 if [ -n "$(type -t brew)" ]; then
@@ -68,7 +69,18 @@ cd .
 function krun() {
   local image="$1"
   shift
-  kubectl run --image="$image" -i -t --rm --restart=Never "${image//_/-}"-"$(echo $RANDOM)" -- "$@"
+  local pod="${image//_/-}"-"$(echo $RANDOM)"
+  if [ -n "$*" -a "$1" != "expose" ]; then
+    kubectl run --image="$image" -i -t --rm --restart=Never "$pod" -- "$@"
+  else
+    echo Pod: "$pod"
+    kubectl run --image="$image" --attach=true --rm --restart=Never "$pod" 1>/dev/null &
+    sleep 3
+    kill -s INT %%
+    if [ "$1" = "expose" ]; then
+      kubectl port-forward "$pod" "$2" 1>/dev/null &
+    fi
+  fi
 }
 
 function kexec() {
@@ -85,6 +97,8 @@ alias kd="kubectl delete"
 alias kdA="kubectl delete deployments,services --all"
 # alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
 
+alias kadminer="krun adminer expose 8080"
+
 # Docker
 alias d="docker"
 alias dc="docker-compose"
@@ -93,11 +107,11 @@ alias build="docker-compose build"
 alias up="docker-compose up -d"
 alias down="docker-compose down"
 alias prune="docker rmi \$(docker images -f \"dangling=true\" -q)"
-alias run="docker run --rm -it"
+alias drun="docker run --rm -it"
 alias crun="docker-compose run --rm"
 
-alias portainer="docker run -d --rm --name portainer -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer --no-auth"
-alias adminer="docker run -d --rm --name adminer -p 8080:8080 --network resume adminer"
+# alias portainer="docker run -d --rm --name portainer -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer --no-auth"
+alias dadminer="docker run -d --rm --name adminer -p 8080:8080 --network resume adminer"
 
 # Git
 alias g="git"
