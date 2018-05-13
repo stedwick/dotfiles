@@ -89,6 +89,10 @@ function kexec() {
   kubectl exec ${pod#pod/} -i -t -- "$@"
 }
 
+function krestart() {
+  kubectl patch -p '{"spec":{"template":{"metadata":{"labels":{"date":"'$(date +"%s")'"}}}}}' "$@"
+}
+
 alias k="kubectl"
 alias kg="kubectl get"
 alias kga="kubectl get all"
