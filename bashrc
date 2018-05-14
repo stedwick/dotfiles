@@ -9,6 +9,9 @@ export HISTFILESIZE="1000000"
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 shopt -s histappend
 
+# Resume
+export RESUME_ROOT="/Users/pbrocoum/dev/resume"
+
 # Aliases
 alias z="clear"
 alias c="cat"

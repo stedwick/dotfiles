@@ -18,8 +18,8 @@ window serv
 dir ~/dev/resume
 0 foc
 
-1 run echo browser-sync start --proxy 'philipbrocoum.localhost' --files 'app'
-2 run echo docker-compose logs -f app
+1 run clear && echo browser-sync start --proxy 'philipbrocoum.kube' --files 'app'
+2 run clear && echo kubectl logs -f deployment/app
 0 run clear && git status && git branch && git tag
 
 window haproxy
