@@ -18,8 +18,8 @@ window serv
 dir ~/dev/resume
 0 foc
 
-1 run echo browser-sync start --proxy 'philipbrocoum.localhost' --files 'app'
-2 run echo docker-compose logs -f app
+1 run clear && echo browser-sync start --proxy 'philipbrocoum.kube' --files 'app'
+2 run clear && echo kubectl logs -f deployment/app
 0 run clear && git status && git branch && git tag
 
 window haproxy
@@ -43,7 +43,7 @@ window k8s
 0A
 0A
 0A
-1B
+1A
 1B
 1B
 22
@@ -55,7 +55,7 @@ dir ~/dev
 0 run exec watch -n 10 -t k8s-svc.sh
 1 run exec watch -n 10 -t 'kubectl get deploy'
 A run exec watch -n 10 -t 'kubectl get po'
-B run exec watch -n 10 -t 'kubectl get no'
+B run exec watch -n 10 -t k8s-pvc.sh
 
 2 run clear && ls
 
