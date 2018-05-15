@@ -294,3 +294,9 @@ set -g monitor-activity off
 # Swap windows left and right
 bind-key -r < swap-window -t -
 bind-key -r > swap-window -t +
+
+# Easily switch to windows 10, 11, 12
+bind A select-window -t 10
+bind B select-window -t 11
+bind C select-window -t 12
+

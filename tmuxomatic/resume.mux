@@ -30,14 +30,6 @@ dir ~/dev/resume-web
 
 0 run clear && git status && git branch && git tag
 
-window db
-
-0
-
-dir ~/dev/resume-db
-
-0 run clear && git status && git branch && git tag
-
 window lb
 
 0
