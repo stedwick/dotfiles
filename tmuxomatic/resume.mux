@@ -2,7 +2,7 @@ window dev
 
 0
 
-dir ~/dev/resume
+dir ~/dev/resume-app
 
 0 run clear && git status && git branch && git tag
 
@@ -15,26 +15,50 @@ window serv
 2
 0
 
-dir ~/dev/resume
+dir ~/dev/resume-app
 0 foc
 
 1 run clear && echo browser-sync start --proxy 'philipbrocoum.kube' --files 'app'
-2 run clear && echo kubectl logs -f deployment/app
+2 run clear && echo kubectl logs -f deployment/app -n resume
 0 run clear && git status && git branch && git tag
 
-window haproxy
+window web
 
 0
 
-dir ~/dev/haproxy
+dir ~/dev/resume-web
 
 0 run clear && git status && git branch && git tag
 
-window dotfiles
+window db
+
+0
+
+dir ~/dev/resume-db
+
+0 run clear && git status && git branch && git tag
+
+window lb
+
+0
+
+dir ~/dev/default-lb
+
+0 run clear && git status && git branch && git tag
+
+window .files
 
 0
 
 dir ~/Dropbox/Dotfiles
+
+0 run clear && git status && git branch && git tag
+
+window k8s-dev
+
+0
+
+dir ~/dev/k8s
 
 0 run clear && git status && git branch && git tag
 
@@ -52,10 +76,10 @@ window k8s
 dir ~/dev
 2 foc
 
-0 run exec watch -n 10 -t k8s-svc.sh
-1 run exec watch -n 10 -t 'kubectl get deploy'
-A run exec watch -n 10 -t 'kubectl get po'
-B run exec watch -n 10 -t k8s-pvc.sh
+0 run exec watch -n 10 -t 'k8s-svc.sh'
+1 run exec watch -n 10 -t 'kubectl get deploy --all-namespaces | ack -v kube | column -t'
+A run exec watch -n 10 -t 'kubectl get po --all-namespaces | ack -v kube | column -t'
+B run exec watch -n 10 -t 'k8s-pvc.sh'
 
 2 run clear && ls
 

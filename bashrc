@@ -5,7 +5,7 @@ export GPG_TTY="$(tty)" # for GPG
 export HISTCONTROL="ignoreboth"
 export HISTSIZE="1000000"
 export HISTFILESIZE="1000000"
-# export PATH="$PATH:$HOME/bin" # included by default?
+export PATH="$PATH:$HOME/bin"
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 shopt -s histappend
 
@@ -102,7 +102,7 @@ alias kga="kubectl get all"
 alias ka="kubectl apply"
 alias kl="kubectl logs"
 alias kd="kubectl delete"
-alias kdA="kubectl delete deployments,services --all"
+alias kdA="kubectl delete svc,deploy,pv,pvc --all"
 # alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
 
 alias kadminer="krun adminer expose 8080"
