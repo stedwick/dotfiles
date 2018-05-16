@@ -114,7 +114,7 @@ alias kadminer="krun adminer port-forward 8080"
 function _k8s-docker-compose() {
   local namespace="$1"
   shift
-  docker-compose -f "$K8S_ROOT/docker/$namespace.docker-compose.yaml" "$@"
+  COMPOSE_PROJECT_NAME="$namespace" docker-compose -f "$K8S_ROOT/docker/$namespace.docker-compose.yaml" "$@"
 }
 
 function build() {
