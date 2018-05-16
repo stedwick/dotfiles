@@ -22,7 +22,7 @@ alias j="jobs"
 
 # Apps
 export DEV_ROOT="/Users/pbrocoum/dev"
-[ -r "$HOME/.default_lb.bash" ] && source "$HOME/.default_lb.bash"
+[ -r "$HOME/.default.bash" ] && source "$HOME/.default.bash"
 [ -r "$HOME/.resume.bash" ] && source "$HOME/.resume.bash"
 
 # Homebrew
@@ -75,14 +75,14 @@ function krun() {
   local image="$1"
   shift
   local pod="${image//_/-}"-"$(echo $RANDOM)"
-  if [ -n "$*" -a "$1" != "expose" ]; then
+  if [ -n "$*" -a "$1" != "port-forward" ]; then
     kubectl run --image="$image" -i -t --rm --restart=Never "$pod" -- "$@"
   else
     echo Pod: "$pod"
     kubectl run --image="$image" --attach=true --rm --restart=Never "$pod" 1>/dev/null &
     sleep 3
     kill -s INT %%
-    if [ "$1" = "expose" ]; then
+    if [ "$1" = "port-forward" ]; then
       kubectl port-forward "$pod" "$2" 1>/dev/null &
     fi
   fi
@@ -104,10 +104,10 @@ alias kga="kubectl get all"
 alias ka="kubectl apply"
 alias kl="kubectl logs"
 alias kd="kubectl delete"
-alias kdA="kubectl delete svc,deploy,pv,pvc --all"
+alias kdA="kubectl delete deploy,svc,pvc,pv --all"
 # alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
 
-alias kadminer="krun adminer expose 8080"
+alias kadminer="krun adminer port-forward 8080"
 
 # Docker
 alias d="docker"

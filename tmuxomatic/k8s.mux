@@ -12,10 +12,10 @@ window k8s
 dir ~/dev
 2 foc
 
-0 run exec watch -n 10 -t 'k8s-svc.sh'
+0 run exec watch -n 10 -t '~/tmuxomatic/k8s-svc.sh'
 1 run exec watch -n 10 -t 'kubectl get deploy --all-namespaces | ack -v kube | column -t'
 A run exec watch -n 10 -t 'kubectl get po --all-namespaces | ack -v kube | column -t'
-B run exec watch -n 10 -t 'k8s-pvc.sh'
+B run exec watch -n 10 -t '~/tmuxomatic/k8s-pvc.sh'
 
 2 run clear && ls
 
