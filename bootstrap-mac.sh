@@ -18,14 +18,13 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 brew install bash tmux reattach-to-user-namespace liquidprompt ack git tig gpg pinentry-mac vim tree
 
 # Dev (install Xcode from App Store)
-brew install chruby ruby-install node postgresql tmate wget git-flow gettext # mosh?
+brew install chruby ruby-install node postgresql tmate wget git-flow gettext dnsmasq go # mosh?
 brew cask install visual-studio-code google-chrome imageoptim ngrok slack macsvg
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
 
 # sudo vim /etc/hosts
 # DNSMasq
-brew install dnsmasq
 sudo bash -c 'echo "address=/.localhost/127.0.0.1" > /usr/local/etc/dnsmasq.conf'
 sudo bash -c 'echo "address=/.kube/192.168.99.100" > /usr/local/etc/dnsmasq.conf'
 sudo /usr/local/sbin/dnsmasq
@@ -33,6 +32,9 @@ sudo /usr/local/sbin/dnsmasq
 
 # Tmuxomatic: https://github.com/oxidane/tmuxomatic
 pip-python3 install tmuxomatic # (?)
+
+# Go
+go get github.com/jsha/minica
 
 # Dash: https://kapeli.com/dash (Setapp?)
 

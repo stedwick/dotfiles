@@ -5,12 +5,9 @@ export GPG_TTY="$(tty)" # for GPG
 export HISTCONTROL="ignoreboth"
 export HISTSIZE="1000000"
 export HISTFILESIZE="1000000"
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/bin:$HOME/go/bin/"
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 shopt -s histappend
-
-# Resume
-export RESUME_ROOT="/Users/pbrocoum/dev/resume"
 
 # Aliases
 alias z="clear"
@@ -22,6 +19,11 @@ alias a="ack -i"
 alias aa="ack -i -A 5 -B 2"
 alias m="less -FX"
 alias j="jobs"
+
+# Apps
+export DEV_ROOT="/Users/pbrocoum/dev"
+[ -r "$HOME/.default_lb.bash" ] && source "$HOME/.default_lb.bash"
+[ -r "$HOME/.resume.bash" ] && source "$HOME/.resume.bash"
 
 # Homebrew
 if [ -n "$(type -t brew)" ]; then
