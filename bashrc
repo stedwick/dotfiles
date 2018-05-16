@@ -22,6 +22,7 @@ alias j="jobs"
 
 # Apps
 export DEV_ROOT="/Users/pbrocoum/dev"
+export K8S_ROOT="$DEV_ROOT/k8s"
 [ -r "$HOME/.default.bash" ] && source "$HOME/.default.bash"
 [ -r "$HOME/.resume.bash" ] && source "$HOME/.resume.bash"
 
@@ -110,12 +111,27 @@ alias kdA="kubectl delete deploy,svc,pvc,pv --all"
 alias kadminer="krun adminer port-forward 8080"
 
 # Docker
+function _k8s-docker-compose() {
+  local namespace="$1"
+  shift
+  docker-compose -f "$K8S_ROOT/docker/$namespace.docker-compose.yaml" "$@"
+}
+
+function build() {
+  _k8s-docker-compose $1 build
+}
+
+function up() {
+  _k8s-docker-compose $1 up -d
+}
+
+function down() {
+  _k8s-docker-compose $1 down
+}
+
 alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
-alias build="docker-compose build"
-alias up="docker-compose up -d"
-alias down="docker-compose down"
 alias prune="docker rmi \$(docker images -f \"dangling=true\" -q)"
 alias drun="docker run --rm -it"
 alias crun="docker-compose run --rm"
