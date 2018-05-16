@@ -118,15 +118,21 @@ function _k8s-docker-compose() {
 }
 
 function build() {
-  _k8s-docker-compose $1 build
+  local namespace="$1"
+  shift
+  _k8s-docker-compose $namespace build "$@"
 }
 
 function up() {
-  _k8s-docker-compose $1 up -d
+  local namespace="$1"
+  shift
+  _k8s-docker-compose $namespace up -d "$@"
 }
 
 function down() {
-  _k8s-docker-compose $1 down
+  local namespace="$1"
+  shift
+  _k8s-docker-compose $namespace down "$@"
 }
 
 alias d="docker"
