@@ -19,6 +19,7 @@ alias a="ack -i"
 alias aa="ack -i -A 5 -B 2"
 alias m="less -FX"
 alias j="jobs"
+alias cdiff="colordiff -u"
 
 # Apps
 export DEV_ROOT="/Users/pbrocoum/dev"
@@ -114,59 +115,11 @@ alias kdA="kubectl delete deploy,svc,pvc,pv --all"
 alias kadminer="krun adminer port-forward 8080"
 
 # Docker
-function _k8s-docker-compose() {
-  local namespace="$1"
-  shift
-  COMPOSE_PROJECT_NAME="$namespace" docker-compose -f "$K8S_ROOT/docker/$namespace.docker-compose.yaml" "$@"
-}
-
-function build() {
-  local namespace="$1"
-  shift
-  if [ -x "$K8S_ROOT/docker/$namespace.build.sh" ]; then
-    "$K8S_ROOT/docker/$namespace.build.sh"
-  else
-    _k8s-docker-compose $namespace build "$@"
-  fi
-}
-
-function up() {
-  local namespace="$1"
-  shift
-  _k8s-docker-compose $namespace up -d "$@"
-}
-
-function down() {
-  local namespace="$1"
-  shift
-  _k8s-docker-compose $namespace down "$@"
-}
-
-function dcl() {
-  local namespace="$1"
-  shift
-  _k8s-docker-compose $namespace logs -f "$@"
-}
-
-function dcexec() {
-  local namespace="$1"
-  shift
-  _k8s-docker-compose $namespace exec "$@"
-}
-
-function dcrun() {
-  local namespace="$1"
-  shift
-  _k8s-docker-compose $namespace run --rm "$@"
-}
-
 alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
 alias prune="docker rmi \$(docker images -f \"dangling=true\" -q)"
 alias drun="docker run --rm -it"
-
-# alias portainer="docker run -d --rm --name portainer -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer --no-auth"
 alias dadminer="docker run -d --rm --name adminer -p 8080:8080 --network resume adminer"
 
 # Git
