@@ -143,12 +143,23 @@ function dcl() {
   _k8s-docker-compose $namespace logs -f "$@"
 }
 
+function dcexec() {
+  local namespace="$1"
+  shift
+  _k8s-docker-compose $namespace exec "$@"
+}
+
+function dcrun() {
+  local namespace="$1"
+  shift
+  _k8s-docker-compose $namespace run "$@"
+}
+
 alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
 alias prune="docker rmi \$(docker images -f \"dangling=true\" -q)"
 alias drun="docker run --rm -it"
-alias crun="docker-compose run --rm"
 
 # alias portainer="docker run -d --rm --name portainer -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer --no-auth"
 alias dadminer="docker run -d --rm --name adminer -p 8080:8080 --network resume adminer"
