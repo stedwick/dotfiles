@@ -122,7 +122,11 @@ function _k8s-docker-compose() {
 function build() {
   local namespace="$1"
   shift
-  _k8s-docker-compose $namespace build "$@"
+  if [ -x "$K8S_ROOT/docker/$namespace.build.sh" ]; then
+    "$K8S_ROOT/docker/$namespace.build.sh"
+  else
+    _k8s-docker-compose $namespace build "$@"
+  fi
 }
 
 function up() {
