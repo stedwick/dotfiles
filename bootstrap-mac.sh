@@ -56,3 +56,6 @@ brew install bash-completion@2 brew-cask-completion gem-completion bundler-compl
 # Dropbox: Dotfiles (link w/ bashrc dln function)
 ln -s ~/Dropbox/Dotfiles/docker-dashboard/sort_with_header.sh ~/bin/
 
+# ~/.default.secret.bash and ~/.resume.secret.bash
+# ~/dev/default-lb/certs
+
