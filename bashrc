@@ -152,7 +152,7 @@ function dcexec() {
 function dcrun() {
   local namespace="$1"
   shift
-  _k8s-docker-compose $namespace run "$@"
+  _k8s-docker-compose $namespace run --rm "$@"
 }
 
 alias d="docker"
