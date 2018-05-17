@@ -135,6 +135,12 @@ function down() {
   _k8s-docker-compose $namespace down "$@"
 }
 
+function dcl() {
+  local namespace="$1"
+  shift
+  _k8s-docker-compose $namespace logs -f "$@"
+}
+
 alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
