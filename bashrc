@@ -23,6 +23,7 @@ alias j="jobs"
 # Apps
 export DEV_ROOT="/Users/pbrocoum/dev"
 export K8S_ROOT="$DEV_ROOT/k8s"
+# export LB_IP_development="192.168.99.100"
 export RAILS_ENV=development
 export RACK_ENV=development
 [ -r "$HOME/.default.bash" ] && source "$HOME/.default.bash"
