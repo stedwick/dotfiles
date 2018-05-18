@@ -60,7 +60,7 @@ if [ -n "$(type -t brew)" ]; then
       if [ -n "$postfix" ]; then
         export LP_PS1_POSTFIX="${postfix}$ "
       else
-        export LP_PS1_POSTFIX=""
+        unset LP_PS1_POSTFIX
       fi
     }
     PROMPT_COMMAND="_phils_prompt; $PROMPT_COMMAND"
