@@ -79,6 +79,22 @@ cd .
 [ -n "$(type -t kubectl)" ]  && source <(kubectl completion bash)
 [ -n "$(type -t minikube)" ] && source <(minikube completion bash)
 
+alias k="kubectl"
+alias kg="kubectl get"
+alias kga="kubectl get all"
+alias ka="kubectl apply"
+alias kd="kubectl delete"
+alias kdA="kubectl delete deploy,svc,pvc,pv --all"
+alias kadminer="krun adminer port-forward 8080"
+# alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
+
+function klogs() {
+  kubectl logs -f deployment/$1
+}
+completions="lb web db app"
+complete -W "$completions" klogs
+unset completions
+
 function krun() {
   local image="$1"
   shift
@@ -105,17 +121,6 @@ function kexec() {
 function krestart() {
   kubectl patch -p '{"spec":{"template":{"metadata":{"labels":{"date":"'$(date +"%s")'"}}}}}' "$@"
 }
-
-alias k="kubectl"
-alias kg="kubectl get"
-alias kga="kubectl get all"
-alias ka="kubectl apply"
-alias kl="kubectl logs"
-alias kd="kubectl delete"
-alias kdA="kubectl delete deploy,svc,pvc,pv --all"
-# alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
-
-alias kadminer="krun adminer port-forward 8080"
 
 # Docker
 alias d="docker"
@@ -150,11 +155,12 @@ function drun() {
 }
 
 function reup() {
-  ddown "$@"
-  dbuild "$@"
-  dup "$@"
-  prune
+  ddown "$@"; dbuild "$@";  dup "$@"; prune
 }
+
+completions="default resume"
+complete -W "$completions" ddown; complete -W "$completions" dbuild; complete -W "$completions" dup; complete -W "$completions" dlogs; complete -W "$completions" dexec; complete -W "$completions" drun; complete -W "$completions" reup;
+unset completions
 
 # Git
 alias g="git"
@@ -189,9 +195,13 @@ alias gmm="git merge master"
 alias gmd="git merge develop"
 alias gms="git merge staging"
 alias gmp="git merge production"
+
 function gmnn() {
   git merge "$1" --no-commit --no-ff
 }
+completions="master staging"
+complete -W "$completions" gmnn
+unset completions
 
 # Dotfiles
 function dln() {
