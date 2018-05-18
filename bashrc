@@ -54,6 +54,9 @@ if [ -n "$(type -t brew)" ]; then
           ;;
         esac
       fi
+      if [ -n "$RAILS_ENV" -a "$RAILS_ENV" != "development" ]; then
+        postfix="\[\033[33m\]$RAILS_ENV\[\033[00m\] $postfix"
+      fi
       if [ -n "$postfix" ]; then
         export LP_PS1_POSTFIX="${postfix}$ "
       else
@@ -119,8 +122,39 @@ alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
 alias prune="docker rmi \$(docker images -f \"dangling=true\" -q)"
-alias drun="docker run --rm -it"
-alias dadminer="docker run -d --rm --name adminer -p 8080:8080 --network resume adminer"
+alias ddrun="docker run --rm -it"
+alias dadminer="docker run -d --rm --name adminer -p 8080:8080 --network resume-development adminer"
+
+function ddown() {
+  eval "$K8S_ROOT/docker/bin/down.sh $@"
+}
+
+function dbuild() {
+  eval "$K8S_ROOT/docker/bin/build.sh $@"
+}
+
+function dup() {
+  eval "$K8S_ROOT/docker/bin/up.sh $@"
+}
+
+function dlogs() {
+  eval "$K8S_ROOT/docker/bin/logs.sh $@"
+}
+
+function dexec() {
+  eval "$K8S_ROOT/docker/bin/exec.sh $@"
+}
+
+function drun() {
+  eval "$K8S_ROOT/docker/bin/run.sh $@"
+}
+
+function reup() {
+  ddown "$@"
+  dbuild "$@"
+  dup "$@"
+  prune
+}
 
 # Git
 alias g="git"
