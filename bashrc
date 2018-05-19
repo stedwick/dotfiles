@@ -196,16 +196,21 @@ complete -W "$completions" dexec
 complete -W "$completions" drun
 complete -W "$completions" reup
 
-function mbuildall() {
-  eval $(minikube docker-env)
+function buildall() {
   export RAILS_ENV=staging
   dbuild default
   dbuild resume
   export RAILS_ENV=development
   dbuild default
   dbuild resume
+}
+function mbuildall() {
+  eval $(minikube docker-env)
+  buildall
   prune
   eval $(minikube docker-env -u)
+  buildall
+  prune
 }
 
 # Git
