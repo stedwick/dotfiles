@@ -24,9 +24,9 @@ alias cdiff="colordiff -u"
 # Apps
 export DEV_ROOT="/Users/pbrocoum/dev"
 export K8S_ROOT="$DEV_ROOT/k8s"
-# export LB_IP_development="192.168.99.100"
-export RAILS_ENV=development
-export RACK_ENV=development
+export RAILS_ENV="development"
+export RACK_ENV="development"
+export k8s_namespace="resume-development"
 [ -r "$HOME/.default.bash" ] && source "$HOME/.default.bash"
 [ -r "$HOME/.resume.bash" ] && source "$HOME/.resume.bash"
 
@@ -57,6 +57,18 @@ if [ -n "$(type -t brew)" ]; then
       if [ -n "$RAILS_ENV" -a "$RAILS_ENV" != "development" ]; then
         postfix="\[\033[33m\]$RAILS_ENV\[\033[00m\] $postfix"
       fi
+      if [ -n "$(type -t kubectl)" -a -n "$(type -t knamespace)" ]; then
+        local _kns="$(knamespace)"
+        if [ "$_kns" != "$k8s_namespace" ]; then
+          [ -z "$_kns" ] && _kns="default"
+          postfix="\[\033[33m\]$_kns\[\033[00m\] $postfix"
+        fi
+        local _ctx="$(kubectl config current-context)"
+        if [ "$_ctx" != "minikube" ]; then
+          [ -z "$_ctx" ] && _ctx="unset"
+          postfix="\[\033[33m\]$_ctx\[\033[00m\] $postfix"
+        fi
+      fi
       if [ -n "$postfix" ]; then
         export LP_PS1_POSTFIX="${postfix}$ "
       else
@@ -79,26 +91,52 @@ cd .
 [ -n "$(type -t kubectl)" ]  && source <(kubectl completion bash)
 [ -n "$(type -t minikube)" ] && source <(minikube completion bash)
 
+function knamespace() {
+  if [ "$1" = "unset" ]; then
+    kubectl config set-context "$(kubectl config current-context)" --namespace= &>/dev/null
+  elif [ -n "$1" ]; then
+    kubectl config set-context "$(kubectl config current-context)" --namespace="$1" &>/dev/null
+  else
+    kubectl config view | grep namespace | sed 's/.*: //'
+  fi
+}
+completions="unset default resume-development"
+complete -W "$completions" knamespace
+if [ -n "$(type -t kubectl)" ]; then
+  kubectl config set-context minikube &>/dev/null
+  knamespace "$k8s_namespace"
+fi
+
 alias k="kubectl"
 alias kg="kubectl get"
 alias kga="kubectl get all"
 alias ka="kubectl apply"
 alias kd="kubectl delete"
 alias kdA="kubectl delete deploy,svc --all"
+alias kexec="kubectl exec -it"
+
 alias kadminer="krun adminer port-forward 8080"
 # alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
 
 function klogs() {
-  kubectl logs -f deployment/$1
+  kubectl logs -f "deployment/$1"
 }
 completions="lb web db app"
 complete -W "$completions" klogs
-unset completions
 
+function krestart() {
+  kubectl patch -p '{"spec":{"template":{"metadata":{"labels":{"date":"'$(date +"%s")'"}}}}}' deployment "$@"
+}
+completions="lb web db app"
+complete -W "$completions" krestart
+
+# krun IMAGE COMMAND
+# krun IMAGE port-forward PORT
 function krun() {
   local image="$1"
   shift
-  local pod="${image//_/-}"-"$(echo $RANDOM)"
+  local pod="${image#*_}"
+  local pod="${pod//_/-}"-run-"$(echo $RANDOM)"
   if [ -n "$*" -a "$1" != "port-forward" ]; then
     kubectl run --image="$image" -i -t --rm --restart=Never "$pod" -- "$@"
   else
@@ -111,16 +149,7 @@ function krun() {
     fi
   fi
 }
-
-function kexec() {
-  local pod="$1"
-  shift
-  kubectl exec ${pod#pod/} -i -t -- "$@"
-}
-
-function krestart() {
-  kubectl patch -p '{"spec":{"template":{"metadata":{"labels":{"date":"'$(date +"%s")'"}}}}}' "$@"
-}
+# Completions at end of file
 
 # Docker
 alias d="docker"
@@ -128,7 +157,7 @@ alias dc="docker-compose"
 alias dm="docker-machine"
 alias prune="docker rmi \$(docker images -f \"dangling=true\" -q)"
 alias ddrun="docker run --rm -it"
-alias dadminer="docker run -d --rm --name adminer -p 8080:8080 --network resume-development adminer"
+alias dadminer="docker run -d --rm --name adminer -p 8080:8080 --network '$k8s_namespace' adminer"
 
 function ddown() {
   eval "$K8S_ROOT/docker/bin/down.sh $@"
@@ -158,9 +187,26 @@ function reup() {
   ddown "$@"; dbuild "$@";  dup "$@"; prune
 }
 
-completions="default resume"
-complete -W "$completions" ddown; complete -W "$completions" dbuild; complete -W "$completions" dup; complete -W "$completions" dlogs; complete -W "$completions" dexec; complete -W "$completions" drun; complete -W "$completions" reup;
-unset completions
+completions="default resume lb web db app"
+complete -W "$completions" ddown
+complete -W "$completions" dbuild
+complete -W "$completions" dup
+complete -W "$completions" dlogs
+complete -W "$completions" dexec
+complete -W "$completions" drun
+complete -W "$completions" reup
+
+function mbuildall() {
+  eval $(minikube docker-env)
+  export RAILS_ENV=staging
+  dbuild default
+  dbuild resume
+  export RAILS_ENV=development
+  dbuild default
+  dbuild resume
+  prune
+  eval $(minikube docker-env -u)
+}
 
 # Git
 alias g="git"
@@ -201,13 +247,18 @@ function gmnn() {
 }
 completions="master staging"
 complete -W "$completions" gmnn
-unset completions
 
-# Dotfiles
+# Dotfile linking
 function dln() {
-    ln -s "/Users/pbrocoum/Dropbox/Dotfiles/$1" "$HOME/.$1"
+  ln -s "$(pwd)/$1" "$HOME/.$1"
 }
 
 # Add completion for aliases
+unset completions
 [ -r "$HOME/.alias_completion.sh" ] && source "$HOME/.alias_completion.sh"
+
+# Must be below alias_completion for some reason
+completions="$(docker image ls | awk '{printf "%s ", $1}')"
+complete -W "$completions bash port-forward 8080" krun
+unset completions
 
