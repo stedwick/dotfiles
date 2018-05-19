@@ -1,5 +1,6 @@
 " Base
 set mouse=a
+set ttymouse=xterm2
 set wrap
 set hidden
 
