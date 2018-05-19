@@ -10,3 +10,6 @@
 [submodule "docker-dashboard"]
 	path = docker-dashboard
 	url = git@github.com:stedwick/docker-dashboard.git
+[submodule "kube-tmux"]
+	path = kube-tmux
+	url = https://github.com/jonmosco/kube-tmux.git

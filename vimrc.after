@@ -22,7 +22,9 @@ nnoremap <Leader>p p
 nnoremap <Leader>P P
 
 " Quickly save & quit
-nmap <Leader>q :xa<CR>
+nmap Q :xa<CR>
+" Close Quickfix window
+nmap <Leader>q :cclose<CR>
 
 " Single click NERDTree
 let g:NERDTreeMouseMode = 3

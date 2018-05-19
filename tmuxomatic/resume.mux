@@ -20,7 +20,6 @@ dir ~/dev/resume-app
 
 1 run clear && echo browser-sync start --proxy 'philipbrocoum.kube' --files 'app'
 2 run clear && echo kubectl logs -f deployment/app -n resume
-0 run clear && git status && git branch && git tag
 
 window web
 
@@ -69,8 +68,8 @@ dir ~/dev/k8s
 2 foc
 
 0 run exec watch -n 10 -t '~/.tmuxomatic/k8s-svc.sh'
-A run exec watch -n 10 -t '~/.tmuxomatic/k8s-deploy.sh'
-1 run exec watch -n 10 -t '~/.tmuxomatic/k8s-po.sh'
+1 run exec watch -n 10 -t '~/.tmuxomatic/k8s-deploy.sh'
+A run exec watch -n 10 -t '~/.tmuxomatic/k8s-po.sh'
 B run exec watch -n 10 -t '~/.tmuxomatic/k8s-pvc.sh'
 
 2 run clear && ls

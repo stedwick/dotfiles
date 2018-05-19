@@ -1,0 +1,6 @@
+--smart-case
+--ignore-file=match:/.*history/
+--ignore-directory=.git
+--ignore-directory=log
+--ignore-directory=tmp
+
