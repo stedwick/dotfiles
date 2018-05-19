@@ -202,7 +202,13 @@ complete -W "$completions" drun
 complete -W "$completions" reup
 
 function buildall() {
+  export RAILS_ENV=test
+  dbuild default
+  dbuild resume
   export RAILS_ENV=staging
+  dbuild default
+  dbuild resume
+  export RAILS_ENV=production
   dbuild default
   dbuild resume
   export RAILS_ENV=development
