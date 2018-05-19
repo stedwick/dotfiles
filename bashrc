@@ -30,6 +30,11 @@ export k8s_namespace="resume-development"
 [ -r "$HOME/.default.bash" ] && source "$HOME/.default.bash"
 [ -r "$HOME/.resume.bash" ] && source "$HOME/.resume.bash"
 
+# Powerline: currently Vim and Liquidprompt only
+if [ -n "$(type -t powerline)" ]; then
+  export USE_POWERLINE=true
+fi
+
 # Homebrew
 if [ -n "$(type -t brew)" ]; then
   export PATH="$PATH:$(brew --prefix)/opt/gettext/bin"
@@ -112,7 +117,7 @@ alias kg="kubectl get"
 alias kga="kubectl get all"
 alias ka="kubectl apply"
 alias kd="kubectl delete"
-alias kdA="kubectl delete deploy,svc --all"
+alias kdA="kubectl delete deploy,svc,hpa --all"
 alias kexec="kubectl exec -it"
 
 alias kadminer="krun adminer port-forward 8080"

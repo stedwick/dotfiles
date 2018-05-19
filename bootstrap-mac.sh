@@ -16,24 +16,25 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 
 # Terminal
 brew install bash tmux reattach-to-user-namespace liquidprompt ack git tig gpg pinentry-mac vim tree
+# Powerline: Fonts -> Dotfiles/powerline (Inconsolata, 18pt, ~%110 vertical)
 
 # Dev (install Xcode from App Store)
-brew install chruby ruby-install node postgresql tmate wget git-flow gettext dnsmasq go colordiff # mosh?
+brew install chruby ruby-install node postgresql tmate wget git-flow gettext dnsmasq go colordiff
 brew cask install visual-studio-code google-chrome opera imageoptim ngrok slack macsvg docker virtualbox minikube
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
+go get github.com/jsha/minica
+
+# ?
+brew install python3
+pip3 install tmuxomatic
+pip3 install powerline-status
 
 # DNSMasq
 sudo bash -c 'echo "address=/.localhost/127.0.0.1" > /usr/local/etc/dnsmasq.conf'
 sudo bash -c 'echo "address=/.kube/192.168.99.100" > /usr/local/etc/dnsmasq.conf'
 sudo /usr/local/sbin/dnsmasq
 # Edit DNS in System Prefs, add 127.0.0.1 and 8.8.8.8
-
-# Tmuxomatic: https://github.com/oxidane/tmuxomatic
-pip-python3 install tmuxomatic # (?)
-
-# Go
-go get github.com/jsha/minica
 
 # Dash: https://kapeli.com/dash (Setapp?)
 

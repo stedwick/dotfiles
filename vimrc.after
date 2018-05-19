@@ -12,7 +12,7 @@ set autowriteall
 autocmd FocusLost * silent! wa
 
 " Tab to next/previous file
-nnoremap <Tab> :e#<CR>
+nnoremap <Tab> :e #<CR>
 
 " Paste and auto reformat
 nnoremap p p`[v`]=
@@ -23,8 +23,7 @@ nnoremap <Leader>P P
 
 " Quickly save & quit
 nmap Q :xa<CR>
-" Close Quickfix window
-nmap <Leader>q :cclose<CR>
+nmap <Leader>q :q<CR>
 
 " Single click NERDTree
 let g:NERDTreeMouseMode = 3
@@ -32,4 +31,10 @@ let g:NERDTreeMouseMode = 3
 let NERDSpaceDelims=1
 
 :nmap <silent> <leader>d <Plug>DashSearch
+
+if !empty($USE_POWERLINE)
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+endif
 
