@@ -144,7 +144,7 @@ function krun() {
   local pod="${image#*_}"
   local pod="${pod//_/-}"-run-"$(echo $RANDOM)"
   if [ -n "$*" -a "$1" != "port-forward" ]; then
-    kubectl run --image="$image" -i -t --rm --restart=Never "$pod" -- "$@"
+    kubectl run --image="$image" -i -t --rm --restart=Never "$pod" "$@"
   else
     echo Pod: "$pod"
     kubectl run --image="$image" --attach=true --rm --restart=Never "$pod" 1>/dev/null &
