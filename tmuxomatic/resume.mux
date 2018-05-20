@@ -21,22 +21,6 @@ dir ~/dev/resume-app
 1 run clear && echo browser-sync start --proxy 'philipbrocoum.kube' --files 'app'
 2 run clear && echo kubectl logs -f deployment/app -n resume
 
-window web
-
-0
-
-dir ~/dev/resume-web
-
-0 run clear && git status && git branch && git tag
-
-window lb
-
-0
-
-dir ~/dev/default-lb
-
-0 run clear && git status && git branch && git tag
-
 window .files
 
 0
@@ -58,9 +42,16 @@ window k8s
 0A
 0A
 0A
+0A
 1A
-1B
-1B
+1A
+1A
+1A
+3B
+3B
+3B
+22
+22
 22
 22
 
@@ -71,23 +62,7 @@ dir ~/dev/k8s
 1 run exec watch -n 10 -t '~/.tmuxomatic/k8s-deploy.sh'
 A run exec watch -n 10 -t '~/.tmuxomatic/k8s-po.sh'
 B run exec watch -n 10 -t '~/.tmuxomatic/k8s-pvc.sh'
+3 run exec watch -n 10 -t '~/.tmuxomatic/k8s-hpa.sh'
 
 2 run clear && ls
 
-window docker
-
-00000
-00000
-111BC
-111BC
-111BC
-111BC
-DDDDD
-
-D foc
-
-0 run exec watch --interval 10 --no-title 'docker ps --all --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Networks}}" | sort_with_header.sh'
-1 run exec watch -n 10 -t 'docker image ls --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" | ack --invert-match "k8s|kube|pause|etcd" | sort_with_header.sh'
-B run exec watch -n 10 -t 'docker volume ls --format "table {{.Name}}" | sort_with_header.sh'
-C run exec watch -n 10 -t 'docker network ls --format "table {{.Name}}" | ack --invert-match "bridge|host|none" | sort_with_header.sh'
-D run exec watch -n 120 -t 'docker-machine ls'

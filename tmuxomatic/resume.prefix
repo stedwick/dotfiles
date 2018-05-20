@@ -21,22 +21,6 @@ dir ~/dev/resume-app
 1 run clear && echo browser-sync start --proxy 'philipbrocoum.kube' --files 'app'
 2 run clear && echo kubectl logs -f deployment/app -n resume
 
-window web
-
-0
-
-dir ~/dev/resume-web
-
-0 run clear && git status && git branch && git tag
-
-window lb
-
-0
-
-dir ~/dev/default-lb
-
-0 run clear && git status && git branch && git tag
-
 window .files
 
 0
