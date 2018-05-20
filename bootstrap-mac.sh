@@ -25,6 +25,9 @@ npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
 go get github.com/jsha/minica
 
+minikube start
+minikube addons enable metrics-server
+
 # ?
 brew install python3
 pip3 install tmuxomatic
