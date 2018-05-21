@@ -106,7 +106,7 @@ function knamespace() {
     kubectl config view | grep namespace | sed 's/.*: //'
   fi
 }
-completions="unset default resume-development"
+completions="unset default resume-development resume-production resume-staging resume-test"
 complete -W "$completions" knamespace
 if [ -n "$(type -t kubectl)" ]; then
   kubectl config set-context minikube 1>/dev/null
@@ -123,7 +123,7 @@ alias kexec="kubectl exec -it"
 # alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
 
 function klogs() {
-  kubectl logs -f "deployment/$1"
+  kubectl logs -f "deployment/$1" "$@"
 }
 completions="lb web db app"
 complete -W "$completions" klogs
