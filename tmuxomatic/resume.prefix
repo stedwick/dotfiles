@@ -19,7 +19,7 @@ dir ~/dev/resume-app
 0 foc
 
 1 run clear && echo browser-sync start --proxy 'philipbrocoum.kube' --files 'app'
-2 run clear && echo kubectl logs -f deployment/app -n resume
+2 run clear && echo kubectl logs -f deployment/app
 
 window .files
 

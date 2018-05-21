@@ -32,7 +32,7 @@ export k8s_namespace="resume-development"
 
 # Powerline: currently Vim and Liquidprompt only
 if [ -n "$(type -t powerline)" ]; then
-  # echo hi &>/dev/null
+  # echo hi 1>/dev/null
   export USE_POWERLINE=true
 fi
 
@@ -99,9 +99,9 @@ cd .
 
 function knamespace() {
   if [ "$1" = "unset" ]; then
-    kubectl config set-context "$(kubectl config current-context)" --namespace= &>/dev/null
+    kubectl config set-context "$(kubectl config current-context)" --namespace= 1>/dev/null
   elif [ -n "$1" ]; then
-    kubectl config set-context "$(kubectl config current-context)" --namespace="$1" &>/dev/null
+    kubectl config set-context "$(kubectl config current-context)" --namespace="$1" 1>/dev/null
   else
     kubectl config view | grep namespace | sed 's/.*: //'
   fi
@@ -109,7 +109,7 @@ function knamespace() {
 completions="unset default resume-development"
 complete -W "$completions" knamespace
 if [ -n "$(type -t kubectl)" ]; then
-  kubectl config set-context minikube &>/dev/null
+  kubectl config set-context minikube 1>/dev/null
   knamespace "$k8s_namespace"
 fi
 
@@ -120,7 +120,6 @@ alias kd="kubectl delete"
 alias kdA="kubectl delete hpa,deploy,svc,cm --all"
 alias kexec="kubectl exec -it"
 
-alias kadminer="krun adminer port-forward 8080"
 # alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
 
 function klogs() {
@@ -136,32 +135,13 @@ completions="lb web db app"
 complete -W "$completions" krestart
 
 function ka() {
+  export K8S_APPLY_DATE="$(date)" # Restart pods even if nothing changes
   [ "$1" = "-f" ] && shift
   local fil="$1"
   shift
   cat "$fil" | envsubst | kubectl apply -f - "$@"
+  unset K8S_APPLY_DATE
 }
-
-# krun IMAGE COMMAND
-# krun IMAGE port-forward PORT
-function krun() {
-  local image="$1"
-  shift
-  local pod="${image#*_}"
-  local pod="${pod//_/-}"-run-"$(echo $RANDOM)"
-  if [ -n "$*" -a "$1" != "port-forward" ]; then
-    kubectl run --image="$image" -i -t --rm --restart=Never "$pod" "$@"
-  else
-    echo Pod: "$pod"
-    kubectl run --image="$image" --attach=true --rm --restart=Never "$pod" 1>/dev/null &
-    sleep 3
-    kill -s INT %%
-    if [ "$1" = "port-forward" ]; then
-      kubectl port-forward "$pod" "$2" 1>/dev/null &
-    fi
-  fi
-}
-# Completions at end of file
 
 # Docker
 alias d="docker"
@@ -279,9 +259,4 @@ function dln() {
 # Add completion for aliases
 unset completions
 [ -r "$HOME/.alias_completion.sh" ] && source "$HOME/.alias_completion.sh"
-
-# Must be below alias_completion for some reason
-completions="$(docker image ls | awk '{printf "%s ", $1}')"
-complete -W "$completions bash port-forward 8080" krun
-unset completions
 

@@ -1,0 +1,8 @@
+window adminer
+
+0
+1
+
+0 run exec kubectl run --image=adminer -it --rm --restart=Never --expose --port=8080 adminer
+1 run sleep 3 && exec kubectl port-forward adminer 8080
+
