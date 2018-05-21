@@ -143,6 +143,10 @@ function ka() {
   unset K8S_APPLY_DATE
 }
 
+function kdeploy() {
+  eval "$K8S_ROOT/bin/deploy.sh $@"
+}
+
 # Docker
 alias d="docker"
 alias dc="docker-compose"
