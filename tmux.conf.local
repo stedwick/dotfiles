@@ -300,3 +300,7 @@ bind A select-window -t 10
 bind B select-window -t 11
 bind C select-window -t 12
 
+# KILL!
+bind x kill-window
+bind X kill-session
+
