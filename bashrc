@@ -118,7 +118,7 @@ alias kg="kubectl get"
 alias kga="kubectl get all"
 alias ka="kubectl apply"
 alias kd="kubectl delete"
-alias kdA="kubectl delete deploy,svc,hpa,cm --all"
+alias kdA="kubectl delete hpa,deploy,svc,cm --all"
 alias kexec="kubectl exec -it"
 
 alias kadminer="krun adminer port-forward 8080"
