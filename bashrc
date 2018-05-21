@@ -116,7 +116,6 @@ fi
 alias k="kubectl"
 alias kg="kubectl get"
 alias kga="kubectl get all"
-alias ka="kubectl apply"
 alias kd="kubectl delete"
 alias kdA="kubectl delete hpa,deploy,svc,cm --all"
 alias kexec="kubectl exec -it"
@@ -135,6 +134,13 @@ function krestart() {
 }
 completions="lb web db app"
 complete -W "$completions" krestart
+
+function ka() {
+  [ "$1" = "-f" ] && shift
+  local fil="$1"
+  shift
+  cat "$fil" | envsubst | kubectl apply -f - "$@"
+}
 
 # krun IMAGE COMMAND
 # krun IMAGE port-forward PORT
