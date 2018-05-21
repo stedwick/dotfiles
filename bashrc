@@ -129,13 +129,13 @@ completions="lb web db app"
 complete -W "$completions" klogs
 
 function krestart() {
-  kubectl patch -p '{"spec":{"template":{"metadata":{"labels":{"date":"'$(date +"%s")'"}}}}}' deployment "$@"
+  kubectl patch -p '{"spec":{"template":{"metadata":{"labels":{"k8s_apply_date":"'$(date +"%s")'"}}}}}' deployment "$@"
 }
 completions="lb web db app"
 complete -W "$completions" krestart
 
 function ka() {
-  export K8S_APPLY_DATE="$(date)" # Restart pods even if nothing changes
+  export K8S_APPLY_DATE="$(date +%s)" # Restart pods even if nothing changes
   [ "$1" = "-f" ] && shift
   local fil="$1"
   shift
