@@ -154,9 +154,9 @@ function krun() {
   local pod="${pod//_/-}"-run-"$RANDOM"
   kubectl run --image="$image" -it --rm --restart=Never "$pod" "$@"
 }
-if [ -n "$(type -t kubectl)" ]; then
+if [ -n "$(type -t docker)" ]; then
   completions="$(docker image ls | awk '{printf "%s ", $1}')"
-  complete -W "$completions bash port-forward 8080" krun
+  complete -W "$completions" krun
 fi
 
 # Docker
