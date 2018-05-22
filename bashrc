@@ -147,6 +147,18 @@ function kdeploy() {
   eval "$K8S_ROOT/bin/deploy.sh $@"
 }
 
+function krun() {
+  local image="$1"
+  shift
+  local pod="${image#*_}"
+  local pod="${pod//_/-}"-run-"$RANDOM"
+  kubectl run --image="$image" -it --rm --restart=Never "$pod" "$@"
+}
+if [ -n "$(type -t kubectl)" ]; then
+  completions="$(docker image ls | awk '{printf "%s ", $1}')"
+  complete -W "$completions bash port-forward 8080" krun
+fi
+
 # Docker
 alias d="docker"
 alias dc="docker-compose"
