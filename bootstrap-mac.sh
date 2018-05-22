@@ -37,6 +37,7 @@ pip3 install powerline-status
 sudo bash -c 'echo "address=/.localhost/127.0.0.1" > /usr/local/etc/dnsmasq.conf'
 sudo bash -c 'echo "address=/.kube/192.168.99.100" > /usr/local/etc/dnsmasq.conf'
 sudo /usr/local/sbin/dnsmasq
+sudo killall -HUP mDNSResponder
 # Edit DNS in System Prefs, add 127.0.0.1 and 8.8.8.8
 
 # Dash: https://kapeli.com/dash (Setapp?)
