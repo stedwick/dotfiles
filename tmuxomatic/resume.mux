@@ -16,7 +16,7 @@ window serv
 0
 
 dir ~/dev/resume-app
-0 foc
+2 foc
 
 1 run clear && echo 'browser-sync start --proxy "philipbrocoum.kube" --https --files "app"'
 2 run clear && echo 'kubectl logs -f deployment/app' && echo 'kexec app-XXX -- bin/rails console'
