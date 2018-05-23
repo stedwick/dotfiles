@@ -168,41 +168,40 @@ alias ddrun="docker run --rm -it"
 alias dadminer="docker run -d --rm --name adminer -p 8080:8080 --network '$k8s_namespace' adminer"
 
 function ddown() {
-  eval "$K8S_ROOT/docker/bin/down.sh $@"
+  local project="$1"
+  shift
+  eval "$K8S_ROOT/docker/bin/docker.sh $project down $@"
 }
-
 function dbuild() {
-  eval "$K8S_ROOT/docker/bin/build.sh $@"
+  local project="$1"
+  shift
+  eval "$K8S_ROOT/docker/bin/docker.sh $project build $@"
 }
-
 function dup() {
-  eval "$K8S_ROOT/docker/bin/up.sh $@"
+  local project="$1"
+  shift
+  eval "$K8S_ROOT/docker/bin/docker.sh $project up -d $@"
 }
-
 function dlogs() {
-  eval "$K8S_ROOT/docker/bin/logs.sh $@"
+  local project="$1"
+  shift
+  eval "$K8S_ROOT/docker/bin/docker.sh $project logs -f $@"
 }
-
 function dexec() {
-  eval "$K8S_ROOT/docker/bin/exec.sh $@"
+  local project="$1"
+  shift
+  eval "$K8S_ROOT/docker/bin/docker.sh $project exec $@"
 }
-
 function drun() {
-  eval "$K8S_ROOT/docker/bin/run.sh $@"
+  local project="$1"
+  shift
+  eval "$K8S_ROOT/docker/bin/docker.sh $project run --rm $@"
 }
-
 function reup() {
   ddown "$@"; dbuild "$@";  dup "$@"; prune
 }
-
 completions="default resume lb web db app"
-complete -W "$completions" ddown
-complete -W "$completions" dbuild
-complete -W "$completions" dup
-complete -W "$completions" dlogs
-complete -W "$completions" dexec
-complete -W "$completions" drun
-complete -W "$completions" reup
+complete -W "$completions" ddown; complete -W "$completions" dbuild; complete -W "$completions" dup; complete -W "$completions" dlogs; complete -W "$completions" dexec; complete -W "$completions" drun; complete -W "$completions" reup
 
 function buildall() {
   export RAILS_ENV=test
@@ -220,6 +219,9 @@ function buildall() {
 }
 function mbuildall() {
   eval $(minikube docker-env)
+  buildall
+  prune
+  eval $(docker-machine env phil-azure)
   buildall
   prune
   eval $(minikube docker-env -u)
