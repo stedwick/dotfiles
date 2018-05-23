@@ -224,7 +224,7 @@ function mbuildall() {
   eval $(docker-machine env phil-azure)
   buildall
   prune
-  eval $(minikube docker-env -u)
+  eval $(docker-machine env -u)
   buildall
   prune
 }
