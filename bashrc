@@ -32,8 +32,8 @@ export k8s_namespace="resume-development"
 
 # Powerline: currently Vim and Liquidprompt only
 if [ -n "$(type -t powerline)" ]; then
-  # echo hi 1>/dev/null
-  export USE_POWERLINE=true
+  echo hi 1>/dev/null
+  # export USE_POWERLINE=true
 fi
 
 # Homebrew
