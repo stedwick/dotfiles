@@ -205,25 +205,36 @@ complete -W "$completions" ddown; complete -W "$completions" dbuild; complete -W
 
 function buildall() {
   export RAILS_ENV=test
+  echo ">>> RAILS_ENV=$RAILS_ENV : default"
   dbuild default
+  echo ">>> RAILS_ENV=$RAILS_ENV : resume"
   dbuild resume
   export RAILS_ENV=staging
+  echo ">>> RAILS_ENV=$RAILS_ENV : default"
   dbuild default
+  echo ">>> RAILS_ENV=$RAILS_ENV : resume"
   dbuild resume
   export RAILS_ENV=production
+  echo ">>> RAILS_ENV=$RAILS_ENV : default"
   dbuild default
+  echo ">>> RAILS_ENV=$RAILS_ENV : resume"
   dbuild resume
   export RAILS_ENV=development
+  echo ">>> RAILS_ENV=$RAILS_ENV : default"
   dbuild default
+  echo ">>> RAILS_ENV=$RAILS_ENV : resume"
   dbuild resume
 }
 function mbuildall() {
   eval $(minikube docker-env)
+  echo ">>> docker: minikube"
   buildall
   prune
+  echo ">>> docker: phil-azure"
   eval $(docker-machine env phil-azure)
   buildall
   prune
+  echo ">>> docker: local"
   eval $(docker-machine env -u)
   buildall
   prune
