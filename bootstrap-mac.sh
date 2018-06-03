@@ -6,7 +6,7 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Base (with https://www.undercoverhq.com/)
-brew cask install bitwarden dropbox spotify iterm2 firefox undercover caffeine keybase
+brew cask install bitwarden dropbox spotify iterm2 firefox undercover caffeine keybase tunnelblick
 mkdir ~/bin
 
 # Safari
