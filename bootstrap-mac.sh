@@ -15,7 +15,7 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 # Dropbox: Apps (macOS)
 
 # Terminal
-brew install bash tmux reattach-to-user-namespace liquidprompt ack git tig gpg pinentry-mac vim tree htop glances
+brew install bash tmux reattach-to-user-namespace liquidprompt ack git tig gpg pinentry-mac vim tree htop glances hh
 # Powerline: Fonts -> Dotfiles/powerline (Inconsolata, 18pt, ~%110 vertical)
 
 # Dev (install Xcode from App Store)
