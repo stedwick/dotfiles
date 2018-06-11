@@ -53,8 +53,10 @@ if [ -n "$(type -t brew)" ]; then
         postfix="\[\033[33m\]$DOCKER_MACHINE_NAME\[\033[00m\] $postfix"
       fi
       if [ -n "$(type -t minikube)" -a -n "$DOCKER_HOST" ]; then
+        local minikube_ip=$(minikube ip 2>&1) minikube_ip_exit="$?"
+        [ "$minikube_ip_exit" != "0" ] && minikube_ip="oops"
         case "$DOCKER_HOST" in
-          *"$(minikube ip)"*)
+          *"$minikube_ip"*)
             postfix="\[\033[33m\]minikube\[\033[00m\] $postfix"
           ;;
         esac
