@@ -27,6 +27,7 @@ go get github.com/jsha/minica
 
 minikube start
 minikube addons enable metrics-server
+minikube addons enable heapster
 
 # ?
 brew install python3
