@@ -27,8 +27,11 @@ export K8S_ROOT="$DEV_ROOT/k8s"
 export RAILS_ENV="development"
 export RACK_ENV="development"
 export k8s_namespace="resume-development"
-[ -r "$HOME/.default.bash" ] && source "$HOME/.default.bash"
-[ -r "$HOME/.resume.bash" ] && source "$HOME/.resume.bash"
+[ -r "$HOME/.default.sh" ] && source "$HOME/.default.sh"
+[ -r "$HOME/.resume.sh" ] && source "$HOME/.resume.sh"
+
+# Chef
+[ -r "$HOME/.chef.sh" ] && source "$HOME/.chef.sh"
 
 # Powerline: currently Vim and Liquidprompt only
 if [ -n "$(type -t powerline)" ]; then
