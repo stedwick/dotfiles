@@ -16,24 +16,16 @@ window serv
 0
 
 dir ~/dev/resume-app
-0 foc
+1 foc
 
-1 run clear && echo 'browser-sync start --proxy "philipbrocoum.kube" --https --files "app"'
-2 run clear && echo 'kubectl logs -f deployment/app' && echo 'kexec app-XXX -- bin/rails console'
+1 run clear && echo 'browser-sync start --proxy "philipbrocoum.localhost" --https --files "app"'
+2 run clear && echo 'COMPOSE_PROJECT_NAME="resume-development" docker-compose -f "$HOME/dev/k8s/docker/resume/docker-compose.development.yaml" logs -f app' && echo 'COMPOSE_PROJECT_NAME="resume-development" docker-compose -f "$HOME/dev/k8s/docker/resume/docker-compose.development.yaml" exec app bin/rails console'
 
 window .files
 
 0
 
 dir ~/Dropbox/Dotfiles
-
-0 run clear && git status && git branch && git tag
-
-window k8s-dev
-
-0
-
-dir ~/dev/k8s
 
 0 run clear && git status && git branch && git tag
 

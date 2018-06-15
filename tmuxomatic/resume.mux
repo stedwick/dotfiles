@@ -16,10 +16,10 @@ window serv
 0
 
 dir ~/dev/resume-app
-2 foc
+1 foc
 
-1 run clear && echo 'browser-sync start --proxy "philipbrocoum.kube" --https --files "app"'
-2 run clear && echo 'kubectl logs -f deployment/app' && echo 'kexec app-XXX -- bin/rails console'
+1 run clear && echo 'browser-sync start --proxy "philipbrocoum.localhost" --https --files "app"'
+2 run clear && echo 'COMPOSE_PROJECT_NAME="resume-development" docker-compose -f "$HOME/dev/k8s/docker/resume/docker-compose.development.yaml" logs -f app' && echo 'COMPOSE_PROJECT_NAME="resume-development" docker-compose -f "$HOME/dev/k8s/docker/resume/docker-compose.development.yaml" exec app bin/rails console'
 
 window .files
 
@@ -29,40 +29,20 @@ dir ~/Dropbox/Dotfiles
 
 0 run clear && git status && git branch && git tag
 
-window k8s-dev
+window docker
 
-0
+00000
+00000
+111BC
+111BC
+111BC
+111BC
+DDDDD
 
-dir ~/dev/k8s
+D foc
 
-0 run clear && git status && git branch && git tag
-
-window k8s
-
-0A
-0A
-0A
-0A
-1A
-1A
-1A
-1A
-3B
-3B
-3B
-22
-22
-22
-22
-
-dir ~/dev/k8s
-2 foc
-
-0 run exec watch -n 10 -t '~/.tmuxomatic/k8s-svc.sh'
-1 run exec watch -n 10 -t '~/.tmuxomatic/k8s-deploy.sh'
-A run exec watch -n 10 -t '~/.tmuxomatic/k8s-po.sh'
-B run exec watch -n 10 -t '~/.tmuxomatic/k8s-pvc.sh'
-3 run exec watch -n 10 -t '~/.tmuxomatic/k8s-hpa.sh'
-
-2 run clear && ls
-
+0 run exec watch --interval 10 --no-title 'docker ps --all --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Networks}}" | sort_with_header.sh'
+1 run watch -n 10 -t 'docker image ls --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" | ack --invert-match "k8s|kube|pause|etcd" | sort_with_header.sh'
+B run exec watch -n 10 -t 'docker volume ls --format "table {{.Name}}" | sort_with_header.sh'
+C run exec watch -n 10 -t 'docker network ls --format "table {{.Name}}" | ack --invert-match "bridge|host|none" | sort_with_header.sh'
+D run exec watch -n 120 -t 'docker-machine ls'
