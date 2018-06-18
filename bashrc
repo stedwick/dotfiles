@@ -158,12 +158,20 @@ function krun() {
   local pod="${pod//_/-}"-run-"$RANDOM"
   kubectl run --image="$image" -it --rm --restart=Never "$pod" "$@"
 }
-if [ -n "$(type -t docker)" ]; then
-  completions="$(docker image ls | awk '{printf "%s ", $1}')"
-  complete -W "$completions" krun
-fi
 
 # Docker
+function docker_running() {
+  local dps=$(docker ps 2>&1) dps_exit="$?"
+  echo "$dps_exit"
+}
+
+if [ -n "$(type -t docker)" ]; then
+  if [ $(docker_running) = "0" ]; then
+    completions="$(docker image ls | awk '{printf "%s ", $1}')"
+    complete -W "$completions" krun
+  fi
+fi
+
 alias d="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
@@ -208,40 +216,30 @@ completions="default resume lb web db app"
 complete -W "$completions" ddown; complete -W "$completions" dbuild; complete -W "$completions" dup; complete -W "$completions" dlogs; complete -W "$completions" dexec; complete -W "$completions" drun; complete -W "$completions" reup
 
 function buildall() {
-  export RAILS_ENV=test
-  echo ">>> RAILS_ENV=$RAILS_ENV : default"
-  dbuild default
-  echo ">>> RAILS_ENV=$RAILS_ENV : resume"
-  dbuild resume
-  export RAILS_ENV=staging
-  echo ">>> RAILS_ENV=$RAILS_ENV : default"
-  dbuild default
-  echo ">>> RAILS_ENV=$RAILS_ENV : resume"
-  dbuild resume
-  export RAILS_ENV=production
-  echo ">>> RAILS_ENV=$RAILS_ENV : default"
-  dbuild default
-  echo ">>> RAILS_ENV=$RAILS_ENV : resume"
-  dbuild resume
-  export RAILS_ENV=development
   echo ">>> RAILS_ENV=$RAILS_ENV : default"
   dbuild default
   echo ">>> RAILS_ENV=$RAILS_ENV : resume"
   dbuild resume
 }
 function mbuildall() {
-  eval $(minikube docker-env)
-  echo ">>> docker: minikube"
-  buildall
-  prune
-  echo ">>> docker: phil-azure"
-  eval $(docker-machine env phil-azure)
-  buildall
-  prune
-  echo ">>> docker: local"
+  if [ $(minikube status --format='{{.MinikubeStatus}}') = "Running" ]; then
+    eval $(minikube docker-env)
+    echo ">>> docker: minikube"
+    buildall
+    prune
+  fi
+  if [ $(docker-machine status phil-azure) = "Running" ]; then
+    echo ">>> docker: phil-azure"
+    eval $(docker-machine env phil-azure)
+    buildall
+    prune
+  fi
   eval $(docker-machine env -u)
-  buildall
-  prune
+  if [ $(docker_running) = "0" ]; then
+    echo ">>> docker: local"
+    buildall
+    prune
+  fi
 }
 
 # Git
