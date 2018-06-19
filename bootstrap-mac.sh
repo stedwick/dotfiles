@@ -20,7 +20,7 @@ brew install bash tmux reattach-to-user-namespace liquidprompt ack git tig gpg p
 
 # Dev (install Xcode from App Store)
 brew install chruby ruby-install node postgresql tmate wget git-flow gettext dnsmasq go colordiff pv
-brew cask install visual-studio-code google-chrome opera imageoptim ngrok slack macsvg docker virtualbox minikube
+brew cask install visual-studio-code google-chrome opera imageoptim ngrok slack macsvg docker virtualbox minikube postgres
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
 go get github.com/jsha/minica
@@ -42,6 +42,7 @@ sudo killall -HUP mDNSResponder
 # Edit DNS in System Prefs, add 127.0.0.1 and 8.8.8.8
 
 # Dash: https://kapeli.com/dash (Setapp?)
+# MySQL: https://www.mysql.com/
 
 # Bitwarden: My SSH & GPG keys (also GitHub public key?)
 gpg --import [ example.key ]

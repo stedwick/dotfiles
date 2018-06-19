@@ -1,0 +1,24 @@
+window dev
+
+0
+
+dir $RAILS_ROOT
+
+0 run clear && git status && git branch && git tag
+
+window serv
+
+1
+2
+2
+2
+2
+0
+
+dir $RAILS_ROOT
+2 foc
+
+1 run clear && echo 'browser-sync start --proxy "localhost:3000" --files "app"'
+2 run clear && echo 'bundle exec rails server'
+0 run clear && echo 'bundle exec rails console'
+
