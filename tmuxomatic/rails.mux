@@ -26,7 +26,7 @@ dir $RAILS_ROOT
 
 1 run bundle exec rails server
 2 run sleep 5 && browser-sync start --proxy 'localhost:3000' --files 'app'
-3 run sleep 10 && ngrok http 3001
+3 run sleep 10 && ngrok http 3000
 4 run docker run -it --rm --name adminer -p 8080:8080 adminer
 5 run bundle exec rails console
 
