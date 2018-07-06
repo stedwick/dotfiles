@@ -23,10 +23,15 @@ alias cdiff="colordiff -u"
 
 # Apps
 export DEV_ROOT="/Users/pbrocoum/dev"
-export K8S_ROOT="$DEV_ROOT/k8s"
+
+export RESUME_ROOT="$DEV_ROOT/resume"
+
+export K8S_ROOT="$RESUME_ROOT/k8s"
+export k8s_namespace="resume-development"
+
 export RAILS_ENV="development"
 export RACK_ENV="development"
-export k8s_namespace="resume-development"
+
 [ -r "$HOME/.default.sh" ] && source "$HOME/.default.sh"
 [ -r "$HOME/.resume.sh" ] && source "$HOME/.resume.sh"
 
@@ -177,7 +182,8 @@ alias dc="docker-compose"
 alias dm="docker-machine"
 alias prune="docker rmi \$(docker images -f \"dangling=true\" -q)"
 alias ddrun="docker run --rm -it"
-alias dadminer="docker run -d --rm --name adminer -p 8080:8080 --network '$k8s_namespace' adminer"
+alias dkadminer="docker run -d --rm --name adminer -p 8080:8080 --network '$k8s_namespace' adminer"
+alias dadminer="docker run -d --rm --name adminer -p 8080:8080 adminer"
 
 function ddown() {
   local project="$1"
