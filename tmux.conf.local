@@ -304,4 +304,5 @@ bind C select-window -t 12
 # KILL!
 bind x kill-window
 bind X kill-session
+bind S setw synchronize-panes
 
