@@ -1,8 +1,14 @@
 window .files
 
-0
+00000AA
+00000AA
+00000AA
+00000AA
 
 dir ~/Dropbox/Dotfiles
 
-0 run clear && git status && git branch && git tag
+0 foc
+
+0 run clear && vim .
+A run clear && git status && git branch && git tag
 
