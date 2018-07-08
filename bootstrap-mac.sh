@@ -25,9 +25,9 @@ npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
 go get github.com/jsha/minica
 
-minikube start
-minikube addons enable metrics-server
-minikube addons enable heapster
+# minikube start
+# minikube addons enable metrics-server
+# minikube addons enable heapster
 
 # ?
 brew install python3

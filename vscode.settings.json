@@ -11,25 +11,5 @@
         "vimrc*": "viml",
         "*pryrc": "ruby"
     },
-    "git.autofetch": true,
-    "git.confirmSync": false,
-    "emmet.includeLanguages": {
-        "erb": "html"
-    },
-    "beautify.language": {
-        "html": {
-            "ext":["erb"]
-        }
-    },
-    "gitlens.currentLine.scrollable": false,
-    "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": false,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressResultsExplorerNotice": false,
-        "suppressShowKeyBindingsNotice": true
-    },
+    "git.confirmSync": false
 }
