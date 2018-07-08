@@ -24,19 +24,12 @@ alias cdiff="colordiff -u"
 # Apps
 export DEV_ROOT="/Users/pbrocoum/dev"
 
-export RESUME_ROOT="$DEV_ROOT/resume"
-
-export K8S_ROOT="$RESUME_ROOT/k8s"
-export k8s_namespace="resume-development"
-
 export RAILS_ENV="development"
 export RACK_ENV="development"
 
-[ -r "$HOME/.default.sh" ] && source "$HOME/.default.sh"
-[ -r "$HOME/.resume.sh" ] && source "$HOME/.resume.sh"
-
-# Chef
-[ -r "$HOME/.chef.sh" ] && source "$HOME/.chef.sh"
+[ -r "$HOME/.bashrc.default.sh" ] && source "$HOME/.bashrc.default.sh"
+[ -r "$HOME/.bashrc.resume.sh" ]  && source "$HOME/.bashrc.resume.sh"
+[ -r "$HOME/.bashrc.chef.sh" ]    && source "$HOME/.bashrc.chef.sh"
 
 # Powerline: currently Vim and Liquidprompt only
 if [ -n "$(type -t powerline)" ]; then
@@ -74,7 +67,7 @@ if [ -n "$(type -t brew)" ]; then
       fi
       if [ -n "$(type -t kubectl)" -a -n "$(type -t knamespace)" ]; then
         local _kns="$(knamespace)"
-        if [ "$_kns" != "$k8s_namespace" ]; then
+        if [ "$_kns" != "$K8S_NAMESPACE" ]; then
           [ -z "$_kns" ] && _kns="default"
           postfix="\[\033[33m\]$_kns\[\033[00m\] $postfix"
         fi
@@ -103,66 +96,7 @@ function cd() {
 cd .
 
 # Kubernetes
-[ -n "$(type -t kubectl)" ]  && source <(kubectl completion bash)
-[ -n "$(type -t minikube)" ] && source <(minikube completion bash)
-
-function knamespace() {
-  if [ "$1" = "unset" ]; then
-    kubectl config set-context "$(kubectl config current-context)" --namespace= 1>/dev/null
-  elif [ -n "$1" ]; then
-    kubectl config set-context "$(kubectl config current-context)" --namespace="$1" 1>/dev/null
-  else
-    kubectl config view | grep namespace | sed 's/.*: //'
-  fi
-}
-completions="unset default resume-development resume-production resume-staging resume-test"
-complete -W "$completions" knamespace
-if [ -n "$(type -t kubectl)" ]; then
-  kubectl config set-context minikube 1>/dev/null
-  knamespace "$k8s_namespace"
-fi
-
-alias k="kubectl"
-alias kg="kubectl get"
-alias kga="kubectl get all"
-alias kd="kubectl delete"
-alias kdA="kubectl delete hpa,deploy,svc,cm --all"
-alias kexec="kubectl exec -it"
-
-# alias kdashboard="kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml"
-
-function klogs() {
-  kubectl logs -f "deployment/$1" "$@"
-}
-completions="lb web db app"
-complete -W "$completions" klogs
-
-function krestart() {
-  kubectl patch -p '{"spec":{"template":{"metadata":{"labels":{"k8s_apply_date":"'$(date +"%s")'"}}}}}' deployment "$@"
-}
-completions="lb web db app"
-complete -W "$completions" krestart
-
-function ka() {
-  export K8S_APPLY_DATE="$(date +%s)" # Restart pods even if nothing changes
-  [ "$1" = "-f" ] && shift
-  local fil="$1"
-  shift
-  cat "$fil" | envsubst | kubectl apply -f - "$@"
-  unset K8S_APPLY_DATE
-}
-
-function kdeploy() {
-  eval "$K8S_ROOT/bin/deploy.sh $@"
-}
-
-function krun() {
-  local image="$1"
-  shift
-  local pod="${image#*_}"
-  local pod="${pod//_/-}"-run-"$RANDOM"
-  kubectl run --image="$image" -it --rm --restart=Never "$pod" "$@"
-}
+[ -r "$HOME/.bashrc.k8s.sh" ]     && source "$HOME/.bashrc.k8s.sh"
 
 # Docker
 function docker_running() {
@@ -182,7 +116,7 @@ alias dc="docker-compose"
 alias dm="docker-machine"
 alias prune="docker rmi \$(docker images -f \"dangling=true\" -q)"
 alias ddrun="docker run --rm -it"
-alias dkadminer="docker run -d --rm --name adminer -p 8080:8080 --network '$k8s_namespace' adminer"
+alias dkadminer="docker run -d --rm --name adminer -p 8080:8080 --network '$K8S_NAMESPACE' adminer"
 alias dadminer="docker run -d --rm --name adminer -p 8080:8080 adminer"
 
 function ddown() {
@@ -219,7 +153,13 @@ function reup() {
   ddown "$@"; dbuild "$@";  dup "$@"; prune
 }
 completions="default resume lb web db app"
-complete -W "$completions" ddown; complete -W "$completions" dbuild; complete -W "$completions" dup; complete -W "$completions" dlogs; complete -W "$completions" dexec; complete -W "$completions" drun; complete -W "$completions" reup
+complete -W "$completions" ddown
+complete -W "$completions" dbuild
+complete -W "$completions" dup
+complete -W "$completions" dlogs
+complete -W "$completions" dexec
+complete -W "$completions" drun
+complete -W "$completions" reup
 
 function buildall() {
   echo ">>> RAILS_ENV=$RAILS_ENV : default"
