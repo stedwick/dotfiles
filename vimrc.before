@@ -1,3 +1,5 @@
 " Snippets are annoying
 " call janus#disable_plugin('snipmate')
 
+:imap <C-J> <Plug>snipMateNextOrTrigger
+
