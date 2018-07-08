@@ -16,7 +16,8 @@ window k8s
 22
 22
 
-dir ~/dev/k8s
+dir $K8S_ROOT
+
 2 foc
 
 0 run exec watch -n 10 -t '~/.tmuxomatic/k8s/svc.sh'
