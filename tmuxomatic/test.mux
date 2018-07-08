@@ -1,5 +1,0 @@
-window test
-
-0
-
-0 run eval \$(docker-machine env docker) && docker-machine active
