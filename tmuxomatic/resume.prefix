@@ -24,7 +24,7 @@ dir $RESUME_ROOT/resume-app
 3 foc
 
 0 run clear && browser-sync start --no-open --proxy philipbrocoum.localhost --https --files app
-1 run clear && docker run --rm --name resume-adminer -p 8080:8080 --network resume-development adminer
+1 run clear && docker run --rm --name resume_adminer -p 8080:8080 --network resume-development adminer
 2 run clear
 3 run clear && COMPOSE_PROJECT_NAME=resume-development docker-compose -f "$K8S_ROOT/docker/resume/docker-compose.development.yaml" exec app bin/rails console
 A run clear && docker attach --detach-keys="ctrl-c" resume-development_app_1
