@@ -27,9 +27,13 @@ export DEV_ROOT="/Users/pbrocoum/dev"
 export RAILS_ENV="development"
 export RACK_ENV="development"
 
+[ -r "$HOME/.bashrc.syncta.sh" ]  && source "$HOME/.bashrc.syncta.sh"
 [ -r "$HOME/.bashrc.default.sh" ] && source "$HOME/.bashrc.default.sh"
 [ -r "$HOME/.bashrc.resume.sh" ]  && source "$HOME/.bashrc.resume.sh"
-[ -r "$HOME/.bashrc.chef.sh" ]    && source "$HOME/.bashrc.chef.sh"
+
+# Docker & Kubernetes
+[ -r "$HOME/.bashrc.docker.sh" ]  && source "$HOME/.bashrc.docker.sh"
+# [ -r "$HOME/.bashrc.k8s.sh" ] && source "$HOME/.bashrc.k8s.sh"
 
 # Powerline: currently Vim and Liquidprompt only
 if [ -n "$(type -t powerline)" ]; then
@@ -38,7 +42,7 @@ fi
 
 # Homebrew
 if [ -n "$(type -t brew)" ]; then
-  export PATH="$PATH:$(brew --prefix)/opt/gettext/bin"
+  [ -d "$(brew --prefix)/opt/gettext/bin" ] && export PATH="$PATH:$(brew --prefix)/opt/gettext/bin"
   case "$BASH_VERSION" in
     4.*) # Bash 4 (brew install bash)
       [ -r "$(brew --prefix)/share/bash-completion/bash_completion" ] && source "$(brew --prefix)/share/bash-completion/bash_completion" ;;
@@ -53,7 +57,7 @@ if [ -n "$(type -t brew)" ]; then
       if [ -n "$DOCKER_MACHINE_NAME" ]; then
         postfix="\[\033[33m\]$DOCKER_MACHINE_NAME\[\033[00m\] $postfix"
       fi
-      if [ -n "$(type -t minikube)" -a -n "$DOCKER_HOST" ]; then
+      if [ -n "$K8S_ROOT" -a -n "$(type -t minikube)" -a -n "$DOCKER_HOST" ]; then
         local minikube_ip=$(minikube ip 2>&1) minikube_ip_exit="$?"
         [ "$minikube_ip_exit" != "0" ] && minikube_ip="oops"
         case "$DOCKER_HOST" in
@@ -65,7 +69,7 @@ if [ -n "$(type -t brew)" ]; then
       if [ -n "$RAILS_ENV" -a "$RAILS_ENV" != "development" ]; then
         postfix="\[\033[33m\]$RAILS_ENV\[\033[00m\] $postfix"
       fi
-      if [ -n "$(type -t kubectl)" -a -n "$(type -t knamespace)" ]; then
+      if [ -n "$K8S_ROOT" -a -n "$(type -t kubectl)" -a -n "$(type -t knamespace)" ]; then
         local _kns="$(knamespace)"
         if [ "$_kns" != "$K8S_NAMESPACE" ]; then
           [ -z "$_kns" ] && _kns="default"
@@ -95,99 +99,6 @@ function cd() {
 }
 cd .
 
-# Kubernetes
-[ -r "$HOME/.bashrc.k8s.sh" ]     && source "$HOME/.bashrc.k8s.sh"
-
-# Docker
-function docker_running() {
-  local dps=$(docker ps 2>&1) dps_exit="$?"
-  echo "$dps_exit"
-}
-
-if [ -n "$(type -t docker)" ]; then
-  if [ $(docker_running) = "0" ]; then
-    completions="$(docker image ls | awk '{printf "%s ", $1}')"
-    complete -W "$completions" krun
-  fi
-fi
-
-alias d="docker"
-alias dc="docker-compose"
-alias dm="docker-machine"
-alias prune="docker rmi \$(docker images -f \"dangling=true\" -q)"
-alias ddrun="docker run --rm -it"
-alias dkadminer="docker run -d --rm --name adminer -p 8080:8080 --network '$K8S_NAMESPACE' adminer"
-alias dadminer="docker run -d --rm --name adminer -p 8080:8080 adminer"
-
-function ddown() {
-  local project="$1"
-  shift
-  eval "$K8S_ROOT/docker/bin/docker.sh $project down $@"
-}
-function dbuild() {
-  local project="$1"
-  shift
-  eval "$K8S_ROOT/docker/bin/docker.sh $project build $@"
-}
-function dup() {
-  local project="$1"
-  shift
-  eval "$K8S_ROOT/docker/bin/docker.sh $project up -d $@"
-}
-function dlogs() {
-  local project="$1"
-  shift
-  eval "$K8S_ROOT/docker/bin/docker.sh $project logs -f $@"
-}
-function dexec() {
-  local project="$1"
-  shift
-  eval "$K8S_ROOT/docker/bin/docker.sh $project exec $@"
-}
-function drun() {
-  local project="$1"
-  shift
-  eval "$K8S_ROOT/docker/bin/docker.sh $project run --rm $@"
-}
-function reup() {
-  ddown "$@"; dbuild "$@";  dup "$@"; prune
-}
-completions="default resume lb web db app"
-complete -W "$completions" ddown
-complete -W "$completions" dbuild
-complete -W "$completions" dup
-complete -W "$completions" dlogs
-complete -W "$completions" dexec
-complete -W "$completions" drun
-complete -W "$completions" reup
-
-function buildall() {
-  echo ">>> RAILS_ENV=$RAILS_ENV : default"
-  dbuild default
-  echo ">>> RAILS_ENV=$RAILS_ENV : resume"
-  dbuild resume
-}
-function mbuildall() {
-  if [ $(minikube status --format='{{.MinikubeStatus}}') = "Running" ]; then
-    eval $(minikube docker-env)
-    echo ">>> docker: minikube"
-    buildall
-    prune
-  fi
-  if [ $(docker-machine status phil-azure) = "Running" ]; then
-    echo ">>> docker: phil-azure"
-    eval $(docker-machine env phil-azure)
-    buildall
-    prune
-  fi
-  eval $(docker-machine env -u)
-  if [ $(docker_running) = "0" ]; then
-    echo ">>> docker: local"
-    buildall
-    prune
-  fi
-}
-
 # Git
 alias g="git"
 
@@ -197,8 +108,9 @@ alias gaa="git add"
 alias gd="git diff -w --diff-filter=M"
 alias gds="git diff -w --diff-filter=M --staged"
 alias gdds="git diff -w --staged"
-alias gc="git commit -a -m"
-alias gcc="git commit -m"
+alias gc="git commit -m"
+alias gca="git commit -a -m"
+alias gco="git checkout"
 alias gp="git pull"
 alias gu="git push"
 
