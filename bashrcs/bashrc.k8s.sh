@@ -30,6 +30,7 @@ alias kga="kubectl get all"
 alias kd="kubectl delete"
 alias kdA="kubectl delete hpa,deploy,svc,cm --all"
 alias kexec="kubectl exec -it"
+alias dkadminer="docker run -d --rm --name adminer -p 8080:8080 --network '$K8S_NAMESPACE' adminer"
 
 function klogs() {
   kubectl logs -f "deployment/$1" "$@"
