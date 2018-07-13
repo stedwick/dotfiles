@@ -25,6 +25,10 @@ npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
 go get github.com/jsha/minica
 
+# Syncta
+brew cask install homebrew/cask-versions/java8 postgres sourcetree redis-app
+brew install bower imagemagick phantomjs elasticsearch@2.4 aws-elasticbeanstalk
+
 # minikube start
 # minikube addons enable metrics-server
 # minikube addons enable heapster
