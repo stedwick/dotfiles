@@ -1,64 +1,60 @@
 window dev
 
-00000AA
-00000AA
-00000AA
-00000AA
+00000
+00000
+00000
+00000
 
 dir $RESUME_ROOT/resume-app
 
 0 foc
 
-0 run clear && vim .
-A run clear && git status && git branch && git tag
+0 run clear && git status && git branch && git tag && vim .
 
 window serv
 
-00011AA
-22222AA
-22222AA
-33333AA
+00011
+22222
+22222
+33333
 
 dir $RESUME_ROOT/resume-app
 
 3 foc
 
 0 run clear && browser-sync start --no-open --proxy philipbrocoum.localhost --https --files app
-1 run clear && docker run --rm --name resume-adminer -p 8080:8080 --network resume-development adminer
-2 run clear
-3 run clear && COMPOSE_PROJECT_NAME=resume-development docker-compose -f "$K8S_ROOT/docker/resume/docker-compose.development.yaml" exec app bin/rails console
-A run clear && docker attach --detach-keys="ctrl-c" resume-development_app_1
+1 run clear && docker run --rm --name resume_adminer -p 8080:8080 --network resume-development adminer
+2 run clear && COMPOSE_PROJECT_NAME=resume-development docker-compose -f "$K8S_ROOT/docker/resume/docker-compose.development.yaml" exec app bin/rails console
+3 run clear && docker attach --detach-keys="ctrl-c" resume-development_app_1
 
 window docker
 
-00000AA
-00000AA
-11123AA
-11123AA
-11123AA
-11123AA
-44444AA
+00000
+00000
+11123
+11123
+11123
+11123
+44444
 
-A foc
+0 foc
 
 0 run exec watch -n 10  -t 'docker ps      --all --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Networks}}" | sort_with_header.sh'
 1 run exec watch -n 10  -t 'docker image   ls    --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" | ack --invert-match "k8s|kube|pause|etcd" | sort_with_header.sh'
 2 run exec watch -n 10  -t 'docker volume  ls    --format "table {{.Name}}" | sort_with_header.sh'
 3 run exec watch -n 10  -t 'docker network ls    --format "table {{.Name}}" | ack --invert-match "bridge|host|none" | sort_with_header.sh'
 4 run exec watch -n 120 -t 'docker-machine ls'
-A run clear
 
 window .files
 
-00000AA
-00000AA
-00000AA
-00000AA
+00000
+00000
+00000
+00000
 
 dir ~/Dropbox/Dotfiles
 
 0 foc
 
-0 run clear && vim .
-A run clear && git status && git branch && git tag
+0 run clear && git status && git branch && git tag && vim .
 
