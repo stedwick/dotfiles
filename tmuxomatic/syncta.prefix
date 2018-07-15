@@ -26,5 +26,5 @@ dir $SYNCTA_ROOT
 1 run php -S localhost:4002 /Users/pbrocoum/Dropbox/Dotfiles/adminer-4.6.3.php
 2 run clear && /usr/local/opt/elasticsearch@2.4/bin/elasticsearch
 3 run clear && bin/rails console
-4 run clear && bin/rails server
+4 run clear && bin/guard
 
