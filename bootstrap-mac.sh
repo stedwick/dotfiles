@@ -26,7 +26,7 @@ ruby-install ruby # Update .ruby-version
 go get github.com/jsha/minica
 
 # Syncta
-brew cask install homebrew/cask-versions/java8 postgres sourcetree redis-app
+brew cask install homebrew/cask-versions/java8 postgres sourcetree redis-app joinme
 brew install bower imagemagick phantomjs elasticsearch@2.4 aws-elasticbeanstalk
 
 # minikube start
@@ -35,7 +35,8 @@ brew install bower imagemagick phantomjs elasticsearch@2.4 aws-elasticbeanstalk
 
 # ?
 brew install python3
-pip3 install tmuxomatic
+# pip3 install tmuxomatic
+pip install --user tmuxp
 pip3 install powerline-status
 
 # DNSMasq
