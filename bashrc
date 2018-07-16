@@ -81,6 +81,9 @@ if [ -n "$(type -t brew)" ]; then
           postfix="\[\033[33m\]$_ctx\[\033[00m\] $postfix"
         fi
       fi
+      if [ -n "$RDS_DB_NAME" ]; then
+        postfix="\[\033[33m\]$RDS_DB_NAME\[\033[00m\] $postfix"
+      fi
       if [ -n "$postfix" ]; then
         export LP_PS1_POSTFIX="${postfix}$ "
       else
@@ -123,6 +126,8 @@ alias gcm="git checkout master"
 alias gcd="git checkout develop"
 alias gcs="git checkout staging"
 alias gcp="git checkout production"
+
+alias gf="git fetch --all"
 
 alias gss="git stash save"
 alias gsp="git stash pop"
