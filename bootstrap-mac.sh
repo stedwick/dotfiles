@@ -28,6 +28,7 @@ go get github.com/jsha/minica
 # Syncta
 brew cask install homebrew/cask-versions/java8 postgres sourcetree redis-app joinme
 brew install bower imagemagick phantomjs elasticsearch@2.4 aws-elasticbeanstalk
+# AWS CLI
 
 # minikube start
 # minikube addons enable metrics-server
@@ -66,8 +67,9 @@ gem install rails # `gem pristine --all` if needed
 brew install bash-completion@2 brew-cask-completion gem-completion bundler-completion rake-completion rails-completion spring-completion docker-completion docker-compose-completion docker-machine-completion
 
 # Dropbox: Dotfiles (link w/ bashrc dln function)
+# .bashrc.resume.secret.sh .bashrc.syncta.secret.sh
 ln -s ~/Dropbox/Dotfiles/docker-dashboard/sort_with_header.sh ~/bin/
 
-# ~/.default.secret.bash and ~/.resume.secret.bash
+# .bashrc.default.secret.sh .bashrc.resume.secret.sh .bashrc.syncta.secret.sh
 # ~/dev/default-lb/certs
 
