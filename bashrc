@@ -5,9 +5,12 @@ export GPG_TTY="$(tty)" # for GPG
 export HISTCONTROL="ignoreboth"
 export HISTSIZE="1000000"
 export HISTFILESIZE="1000000"
-export PATH="$PATH:$HOME/bin:$HOME/go/bin/"
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 shopt -s histappend
+
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/go/bin/"
+export PATH="$PATH:$HOME/Library/Python/3.7/bin"
 
 # Aliases
 alias z="clear"
@@ -81,7 +84,7 @@ if [ -n "$(type -t brew)" ]; then
           postfix="\[\033[33m\]$_ctx\[\033[00m\] $postfix"
         fi
       fi
-      if [ -n "$RDS_DB_NAME" ]; then
+      if [ -n "$RDS_DB_NAME" -a "$RDS_DB_NAME" != "ccc_staging" ]; then
         postfix="\[\033[33m\]$RDS_DB_NAME\[\033[00m\] $postfix"
       fi
       if [ -n "$postfix" ]; then
@@ -125,7 +128,8 @@ alias gt="git tag"
 alias gcm="git checkout master"
 alias gcd="git checkout develop"
 alias gcs="git checkout staging"
-alias gcp="git checkout production"
+alias gcpp="git checkout production"
+alias gcp="git checkout philip"
 
 alias gf="git fetch --all"
 
