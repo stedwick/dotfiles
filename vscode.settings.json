@@ -11,5 +11,6 @@
         "vimrc*": "viml",
         "*pryrc": "ruby"
     },
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "diffEditor.renderSideBySide": false
 }
