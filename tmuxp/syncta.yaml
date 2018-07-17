@@ -1,0 +1,32 @@
+session_name: syncta
+start_directory: $SYNCTA_ROOT
+suppress_history: false
+
+windows:
+  - window_name: bash
+    focus: true
+    panes:
+      - clear && git status && git branch && git tag
+
+  - window_name: dev
+    panes:
+      - clear && vim .
+
+  - window_name: term
+    panes:
+      - clear && bin/rails console
+
+  - window_name: serv
+    layout: tiled
+    panes:
+      - shell_command:
+        - clear && bin/guard
+        focus: true
+      - clear && /usr/local/opt/elasticsearch@2.4/bin/elasticsearch
+      - clear && php -S localhost:4002 /Users/pbrocoum/Dropbox/Dotfiles/adminer-4.6.3.php
+      - clear && browser-sync start --no-open --proxy "http://lolbackflow.lvh.me:3000" --port 4000 --files app
+
+  - window_name: .files
+    start_directory: ~/Dropbox/Dotfiles
+    panes:
+      - clear && git status && git branch && git tag && vim .
