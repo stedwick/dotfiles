@@ -19,7 +19,7 @@ brew install bash tmux reattach-to-user-namespace liquidprompt ack git tig gpg p
 # Powerline: Fonts -> Dotfiles/powerline (Inconsolata, 18pt, ~%110 vertical)
 
 # Dev (install Xcode from App Store)
-brew install chruby ruby-install node postgresql tmate wget git-flow gettext dnsmasq go colordiff pv yarn
+brew install chruby ruby-install node postgresql tmate wget git-flow gettext dnsmasq go colordiff pv yarn ctags
 brew cask install visual-studio-code google-chrome opera imageoptim ngrok slack macsvg docker virtualbox minikube postgres
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
@@ -29,6 +29,7 @@ go get github.com/jsha/minica
 brew cask install homebrew/cask-versions/java8 postgres sourcetree redis-app joinme gpg-suite
 brew install bower imagemagick phantomjs elasticsearch@2.4 aws-elasticbeanstalk
 # AWS CLI
+# SSH keys
 
 # minikube start
 # minikube addons enable metrics-server
