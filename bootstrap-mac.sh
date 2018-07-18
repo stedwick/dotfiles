@@ -6,7 +6,7 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Base (with https://www.undercoverhq.com/)
-brew cask install bitwarden dropbox spotify iterm2 firefox undercover caffeine keybase tunnelblick
+brew cask install bitwarden dropbox spotify iterm2 firefox undercover caffeine keybase tunnelblick bowtie
 mkdir ~/bin
 
 # Safari
@@ -26,7 +26,7 @@ ruby-install ruby # Update .ruby-version
 go get github.com/jsha/minica
 
 # Syncta
-brew cask install homebrew/cask-versions/java8 postgres sourcetree redis-app joinme
+brew cask install homebrew/cask-versions/java8 postgres sourcetree redis-app joinme gpg-suite
 brew install bower imagemagick phantomjs elasticsearch@2.4 aws-elasticbeanstalk
 # AWS CLI
 
