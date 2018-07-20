@@ -302,7 +302,7 @@ bind B select-window -t 11
 bind C select-window -t 12
 
 # KILL!
-bind x kill-window
+bind x kill-pane # & = kill-window
 bind X kill-session
 bind S setw synchronize-panes
 
