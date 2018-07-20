@@ -141,7 +141,8 @@ alias gm="git merge"
 alias gmm="git merge master"
 alias gmd="git merge develop"
 alias gms="git merge staging"
-alias gmp="git merge production"
+alias gmpp="git merge production"
+alias gmp="git merge philip"
 
 function gmnn() {
   git merge "$1" --no-commit --no-ff
