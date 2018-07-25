@@ -14,13 +14,13 @@ windows:
 
   - window_name: term
     panes:
-      - clear && bin/rails console
+      - clear && echo bin/rails console
 
   - window_name: serv
     layout: tiled
     panes:
       - clear && php -S localhost:4002 /Users/pbrocoum/Dropbox/Dotfiles/adminer-4.6.3.php
-      - clear && browser-sync start --no-open --proxy "http://lolbackflow.lvh.me:3000" --port 4000 --files app
+      - clear && echo browser-sync start --no-open --proxy "http://lolbackflow.lvh.me:3000" --port 4000 --files app
       - shell_command:
         - clear && bin/rails server
         focus: true
