@@ -30,6 +30,7 @@ brew cask install homebrew/cask-versions/java8 postgres sourcetree redis-app joi
 brew install bower imagemagick phantomjs elasticsearch@2.4 aws-elasticbeanstalk
 # AWS CLI
 # SSH keys
+# env.local
 
 # minikube start
 # minikube addons enable metrics-server

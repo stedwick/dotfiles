@@ -7,6 +7,8 @@
     "files.associations": {
         "bashrc": "shellscript",
         "*.conf*": "shellscript",
+        ".env*": "shellscript",
+        "*.local": "shellscript",
         "liquidpromptrc": "shellscript",
         "vimrc*": "viml",
         "*pryrc": "ruby"
