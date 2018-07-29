@@ -1,4 +1,5 @@
-export DOCKER_ROOT="$RESUME_ROOT/k8s/docker"
+export K8S_ROOT="$RESUME_ROOT/k8s"
+export DOCKER_ROOT="$K8S_ROOT/docker"
 
 function docker_running() {
   local dps=$(docker ps 2>&1) dps_exit="$?"

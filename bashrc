@@ -31,11 +31,10 @@ export RAILS_ENV="development"
 export RACK_ENV="development"
 
 [ -r "$HOME/.bashrc.syncta.sh" ]  && source "$HOME/.bashrc.syncta.sh"
-[ -r "$HOME/.bashrc.default.sh" ] && source "$HOME/.bashrc.default.sh"
 [ -r "$HOME/.bashrc.resume.sh" ]  && source "$HOME/.bashrc.resume.sh"
 
 # Docker & Kubernetes
-[ -r "$HOME/.bashrc.docker.sh" ]  && source "$HOME/.bashrc.docker.sh"
+# [ -r "$HOME/.bashrc.docker.sh" ]  && source "$HOME/.bashrc.docker.sh"
 # [ -r "$HOME/.bashrc.k8s.sh" ] && source "$HOME/.bashrc.k8s.sh"
 
 # Powerline: currently Vim and Liquidprompt only
