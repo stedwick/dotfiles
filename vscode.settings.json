@@ -3,6 +3,7 @@
     "editor.fontSize": 15,
     // "editor.formatOnPaste": true,
     "editor.wordWrap": "on",
+    "editor.tabSize": 2,
     "files.autoSave": "onFocusChange",
     "files.associations": {
         "bashrc": "shellscript",
