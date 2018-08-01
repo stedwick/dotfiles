@@ -31,6 +31,7 @@ brew install bower imagemagick phantomjs elasticsearch@2.4 aws-elasticbeanstalk
 # AWS CLI
 # SSH keys
 # env.local
+# git config user.email "philip@c3backflow.com"
 
 # minikube start
 # minikube addons enable metrics-server
