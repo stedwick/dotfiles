@@ -14,19 +14,21 @@ windows:
 
   - window_name: term
     panes:
-      - clear && echo bin/rails console
+      - clear && echo "bin/rails console"
 
   - window_name: serv
     layout: tiled
     panes:
-      - clear && php -S localhost:4002 /Users/pbrocoum/Dropbox/Dotfiles/adminer-4.6.3.php
-      - clear && echo browser-sync start --no-open --proxy "http://lolbackflow.lvh.me:3000" --port 4000 --files app
+      - shell_command:
+        - clear && echo php -S localhost:4002 adminer.php
+        start_directory: ~/Dropbox/Dotfiles/adminer
+      - clear && echo "browser-sync start --no-open --proxy \"http://lolbackflow.lvh.me:3000\" --port 4000 --files app"
       - shell_command:
         - clear && bin/rails server
         focus: true
       - clear && /usr/local/opt/elasticsearch@2.4/bin/elasticsearch
       - clear
-      - clear
+      - clear && echo "bundle exec sidekiq"
 
   - window_name: .files
     start_directory: ~/Dropbox/Dotfiles
