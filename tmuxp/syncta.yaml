@@ -14,7 +14,7 @@ windows:
 
   - window_name: term
     panes:
-      - clear && echo "bin/rails console"
+      - clear && bin/rails console
 
   - window_name: serv
     layout: tiled
