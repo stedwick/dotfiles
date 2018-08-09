@@ -24,7 +24,7 @@ nnoremap <Leader>P P
 
 " Quickly save & quit
 nmap Q :xa<CR>
-nmap <Leader>q :q<CR>
+nmap <Leader>q :cclose<CR>
 
 " Single click NERDTree
 let g:NERDTreeMouseMode = 3

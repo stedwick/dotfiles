@@ -20,7 +20,7 @@ brew install bash tmux reattach-to-user-namespace liquidprompt ack git tig gpg p
 
 # Dev (install Xcode from App Store)
 brew install chruby ruby-install node postgresql tmate wget git-flow gettext dnsmasq go colordiff pv yarn ctags
-brew cask install visual-studio-code google-chrome opera imageoptim ngrok slack macsvg docker virtualbox minikube postgres
+brew cask install visual-studio-code google-chrome opera imageoptim ngrok slack macsvg docker virtualbox minikube postgres chromedriver
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
 go get github.com/jsha/minica

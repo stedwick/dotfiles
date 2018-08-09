@@ -19,7 +19,7 @@ windows:
   - window_name: serv
     layout: tiled
     panes:
-      - clear && cd ~/Dropbox/Dotfiles/adminer && php -S localhost:4002 adminer.php
+      - clear ; cd ~/Dropbox/Dotfiles/adminer ; php -S localhost:4002 adminer.php
       - clear && echo "browser-sync start --no-open --proxy \"http://lolbackflow.lvh.me:3000\" --port 4000 --files app"
       - shell_command:
         - clear && bin/rails server
