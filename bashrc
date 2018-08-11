@@ -101,6 +101,28 @@ function cd() {
 }
 cd .
 
+function rubocop_changed() {
+  if [ -n "$GIT_CHANGED_FILES" ]; then
+    git_diff="$GIT_CHANGED_FILES"
+  else
+    git_diff=$(git diff --name-only)
+  fi
+  echo "$git_diff"
+  echo "$git_diff" | xargs bundle exec rubocop -a --force-exclusion
+  echo "$git_diff" | xargs bundle exec rubocop -a --force-exclusion
+}
+
+function rspec_changed() {
+  if [ -n "$GIT_CHANGED_FILES" ]; then
+    git_diff="$GIT_CHANGED_FILES"
+  else
+    git_diff=$(git diff --name-only)
+  fi
+  git_diff=$(echo "$git_diff" | xargs basename | sed 's/\.rb/_spec.rb/' | xargs -L1 find spec -name)
+  echo "$git_diff"
+  echo "$git_diff" | xargs bin/rspec
+}
+
 # Git
 alias g="git"
 
