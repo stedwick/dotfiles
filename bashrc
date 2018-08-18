@@ -105,7 +105,7 @@ function rubocop_changed() {
   if [ -n "$GIT_CHANGED_FILES" ]; then
     git_diff="$GIT_CHANGED_FILES"
   else
-    git_diff=$(git diff --name-only)
+    git_diff="$(git status -s | cut -c 4-)"
   fi
   echo "$git_diff"
   echo "$git_diff" | xargs bundle exec rubocop -a --force-exclusion
@@ -116,9 +116,9 @@ function rspec_changed() {
   if [ -n "$GIT_CHANGED_FILES" ]; then
     git_diff="$GIT_CHANGED_FILES"
   else
-    git_diff=$(git diff --name-only)
+    git_diff="$(git status -s | cut -c 4-)"
   fi
-  git_diff=$(echo "$git_diff" | xargs basename | sed 's/\.rb/_spec.rb/' | xargs -L1 find spec -name)
+  git_diff=$(echo "$git_diff" | xargs -L1 basename | sed 's/\.rb/_spec.rb/' | grep '_spec\.' | xargs -L1 find spec -name)
   echo "$git_diff"
   echo "$git_diff" | xargs bin/rspec
 }
