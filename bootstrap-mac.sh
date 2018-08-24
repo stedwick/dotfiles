@@ -6,8 +6,9 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Base (with https://www.undercoverhq.com/)
-brew cask install bitwarden dropbox spotify iterm2 firefox undercover caffeine keybase tunnelblick bowtie
+brew cask install bitwarden dropbox spotify iterm2 firefox undercover caffeine keybase tunnelblick bowtie skype
 mkdir ~/bin
+# Miro http://www.mirovideoconverter.com/
 
 # Safari
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool YES
@@ -20,7 +21,7 @@ brew install bash tmux reattach-to-user-namespace liquidprompt ack git tig gpg p
 
 # Dev (install Xcode from App Store)
 brew install chruby ruby-install node postgresql tmate wget git-flow gettext dnsmasq go colordiff pv yarn ctags awscli
-brew cask install visual-studio-code google-chrome opera imageoptim ngrok slack macsvg docker virtualbox minikube postgres chromedriver
+brew cask install visual-studio-code google-chrome opera imageoptim ngrok slack macsvg docker virtualbox minikube postgres chromedriver skype-for-business
 npm install -g browser-sync
 ruby-install ruby # Update .ruby-version
 go get github.com/jsha/minica

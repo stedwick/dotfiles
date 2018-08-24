@@ -51,7 +51,7 @@ if [ -n "$(type -t brew)" ]; then
     3.*) # Bash 3 (masOS default)
       [ -r "$(brew --prefix)/etc/bash_completion" ] && source "$(brew --prefix)/etc/bash_completion" ;;
   esac
-  if [ -r "$(brew --prefix)/share/liquidprompt" ]; then
+  if [ -r "$(brew --prefix)/share/liquidprompt" -a -n "$PS1" ]; then
     source "$(brew --prefix)/share/liquidprompt"
     function _phils_prompt() {
       local postfix=""
@@ -101,12 +101,17 @@ function cd() {
 }
 cd .
 
+function git_changed_files() {
+  git status -s | grep -v '^D' | cut -c 4- | sed 's/^.* -> //' | grep -v 'vendor/' | grep -v 'public/'
+}
+
 function rubocop_changed() {
   if [ -n "$GIT_CHANGED_FILES" ]; then
     git_diff="$GIT_CHANGED_FILES"
   else
-    git_diff="$(git status -s | cut -c 4-)"
+    git_diff="$(git_changed_files)"
   fi
+  git_diff=$(echo "$git_diff" | grep '\.rb')
   echo "$git_diff"
   echo "$git_diff" | xargs bundle exec rubocop -a --force-exclusion
   echo "$git_diff" | xargs bundle exec rubocop -a --force-exclusion
@@ -116,7 +121,7 @@ function rspec_changed() {
   if [ -n "$GIT_CHANGED_FILES" ]; then
     git_diff="$GIT_CHANGED_FILES"
   else
-    git_diff="$(git status -s | cut -c 4-)"
+    git_diff="$(git_changed_files)"
   fi
   git_diff=$(echo "$git_diff" | xargs -L1 basename | sed 's/\.rb/_spec.rb/' | grep '_spec\.' | xargs -L1 find spec -name)
   echo "$git_diff"
