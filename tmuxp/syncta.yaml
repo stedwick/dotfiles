@@ -13,14 +13,14 @@ windows:
 
   - window_name: term
     panes:
-      - clear && bin/rails console
+      - clear && echo "bin/rails console"
 
   - window_name: serv
     layout: tiled
     panes:
       - clear && /usr/local/opt/elasticsearch@2.4/bin/elasticsearch
       - clear ; cd ~/Dropbox/Dotfiles/adminer ; php -S localhost:4002 adminer.php
-      - clear && bin/rails server
+      - clear && echo "bin/rails server"
       - clear && echo "browser-sync start --no-open --proxy \"http://lolbackflow.lvh.me:3000\" --port 4000 --files app"
       - clear && echo "syncta_ssh"
       - clear && echo "bundle exec sidekiq"
@@ -29,4 +29,12 @@ windows:
     start_directory: ~/Dropbox/Dotfiles
     panes:
       - clear && git status && git branch && git tag && vim .
+
+  - window_name: stage
+    panes:
+      - clear && git status && git branch && git tag
+
+  - window_name: prod
+    panes:
+      - clear && git status && git branch && git tag
 
