@@ -41,7 +41,7 @@ curl -L https://bit.ly/janus-bootstrap | bash
 
 # Syncta
 brew cask install homebrew/cask-versions/java8
-brew install phantomjs elasticsearch@2.4 # aws-elasticbeanstalk
+brew install phantomjs elasticsearch@2.4 aws-elasticbeanstalk
 brew cask install chromedriver skype-for-business onedrive
 
 # SSH keys
@@ -63,6 +63,9 @@ cat README.md
 # Dropbox: Dotfiles (link w/ bashrc dln function)
 # ? .bashrc.syncta.secret.sh
 # $HOME/Library/Application\ Support/Code/User/settings.json
+
+# aws-elasticbeanstalk
+# https://c3backflow.atlassian.net/wiki/spaces/DEV/pages/15237121/Access+Staging+Production+via+SSH
 
 #####
 #####
