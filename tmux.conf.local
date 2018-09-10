@@ -160,7 +160,7 @@ if-shell '[ -n "$USE_POWERLINE" ]' "tmux_conf_theme_right_separator_sub=''"  
 # tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
 # tmux_conf_theme_status_right='#{prefix}#{pairing} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
 tmux_conf_theme_status_left=' ❐ #S |  |'
-tmux_conf_theme_status_right=' | #{prefix}#{pairing}#{root}#{hostname_ssh} |#(bash ~/bin/syncta_prod.sh)' # light-gray, red, blue
+tmux_conf_theme_status_right=' | #{prefix}#{pairing}#{root}#{hostname_ssh} |#(bash ~/bin/syncta_is_prod.sh)' # light-gray, red, blue
 # tmux_conf_theme_status_right='| #{prefix}#{pairing}#{root}#{hostname_ssh} | #(bash ~/bin/kube.tmux 245 colour9 colour39)' # light-gray, red, blue
 
 # status left style
