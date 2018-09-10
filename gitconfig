@@ -3,12 +3,11 @@
 	name = Philip Brocoum
 [commit]
 	gpgsign = true
-	template = /Users/pbrocoum/.stCommitMsg
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [core]
 	excludesfile = /Users/pbrocoum/.gitignore_global
+[mergetool "sourcetree"]
+	cmd = /private/var/folders/dx/scllptx93gxf_1hm66d8lccm0000gn/T/AppTranslocation/F500285C-2C90-4B67-A647-E5458ED13507/d/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

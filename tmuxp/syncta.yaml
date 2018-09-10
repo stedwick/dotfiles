@@ -19,7 +19,7 @@ windows:
     layout: tiled
     panes:
       - clear && /usr/local/opt/elasticsearch@2.4/bin/elasticsearch
-      - clear ; cd ~/Dropbox/Dotfiles/adminer ; php -S localhost:4002 adminer.php
+      - clear ; cd ~/bin/adminer ; php -S localhost:4002 adminer.php
       - clear && echo "bin/rails server"
       - clear && echo "browser-sync start --no-open --proxy \"http://lolbackflow.lvh.me:3000\" --port 4000 --files app"
       - clear && echo "syncta_ssh"
