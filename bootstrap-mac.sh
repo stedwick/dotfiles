@@ -26,7 +26,7 @@ brew install tmux reattach-to-user-namespace vim git tig liquidprompt ack hh tre
 # Powerline: Fonts -> Dotfiles/powerline (Inconsolata, 18pt, ~%110 vertical)
 
 # Dev (install Xcode from App Store)
-brew install ruby-install chruby node yarn postgresql wget ctags imagemagick awscli # dnsmasq go git-flow tmate colordiff pv gettext
+brew install ruby-install chruby node yarn postgresql wget ctags imagemagick awscli unar # dnsmasq go git-flow tmate colordiff pv gettext
 brew cask install visual-studio-code sourcetree gpg-suite slack google-chrome firefox skype imageoptim ngrok virtualbox # docker minikube macsvg
 # npm install -g bower
 pip3 install --user tmuxp
@@ -38,6 +38,10 @@ brew install bash-completion@2 brew-cask-completion gem-completion bundler-compl
 
 # Janus for Vim: https://github.com/carlhuda/janus
 curl -L https://bit.ly/janus-bootstrap | bash
+
+# IEVMs
+# VBoxManage extpack install ...
+# curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="EDGE" bash
 
 # Syncta
 brew cask install homebrew/cask-versions/java8
@@ -66,6 +70,12 @@ cat README.md
 
 # aws-elasticbeanstalk
 # https://c3backflow.atlassian.net/wiki/spaces/DEV/pages/15237121/Access+Staging+Production+via+SSH
+
+# QuickBooks
+# https://community.intuit.com/articles/1207255-quickbooks-desktop-trial-links
+# ngrok
+# https://c3backflow.atlassian.net/wiki/spaces/DEV/pages/157024257/Dev+Test+Quickbooks+desktop+Online
+ngrok http -subdomain=qb-desktop-c3 3000
 
 #####
 #####
