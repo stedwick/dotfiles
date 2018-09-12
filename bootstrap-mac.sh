@@ -39,10 +39,6 @@ brew install bash-completion@2 brew-cask-completion gem-completion bundler-compl
 # Janus for Vim: https://github.com/carlhuda/janus
 curl -L https://bit.ly/janus-bootstrap | bash
 
-# IEVMs
-# VBoxManage extpack install ...
-# curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="EDGE" bash
-
 # Syncta
 brew cask install homebrew/cask-versions/java8
 brew install phantomjs elasticsearch@2.4 aws-elasticbeanstalk
@@ -76,6 +72,14 @@ cat README.md
 # ngrok
 # https://c3backflow.atlassian.net/wiki/spaces/DEV/pages/157024257/Dev+Test+Quickbooks+desktop+Online
 ngrok http -subdomain=qb-desktop-c3 3000
+
+# Virtual machines
+# IEVMs
+# VBoxManage extpack install ...
+# curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="EDGE" bash
+# https://developer.microsoft.com/en-us/windows/downloads/virtual-machines
+# https://clients.amazonworkspaces.com/
+# https://my.vmware.com/group/vmware/downloads
 
 #####
 #####
