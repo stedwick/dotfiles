@@ -9,7 +9,7 @@
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool YES
 mkdir ~/bin
 brew install bash figlet
-brew cask install bitwarden dropbox spotify iterm2 bowtie undercover keybase grandperspective
+brew cask install bitwarden dropbox spotify iterm2 bowtie undercover keybase grandperspective handbrake
 
 # Opera: https://www.opera.com
 # Page Shadow: https://addons.opera.com/en/extensions/details/page-shadow/
