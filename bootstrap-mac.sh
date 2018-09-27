@@ -80,6 +80,7 @@ ngrok http -subdomain=qb-desktop-c3 3000
 # https://developer.microsoft.com/en-us/windows/downloads/virtual-machines
 # https://clients.amazonworkspaces.com/
 # https://my.vmware.com/group/vmware/downloads
+# https://www.parallels.com/
 
 #####
 #####
