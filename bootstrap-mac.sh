@@ -55,7 +55,12 @@ cd ~/dev/syncta
 # gem pristine --all
 git config user.email "philip@c3backflow.com"
 cat README.md
+
 # Ultrahook (Bitwarden)
+gem install ultrahook
+echo "api_key: ..." > ~/.ultrahook
+ultrahook stripe 3000
+
 # env.local
 # OneDrive: .git/hooks/
 # OneDrive shared sync: https://login.microsoftonline.com
