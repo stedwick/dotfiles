@@ -16,5 +16,6 @@
     },
     "git.confirmSync": false,
     "diffEditor.renderSideBySide": false,
-    "git.autofetch": true
+    "git.autofetch": true,
+    "window.zoomLevel": 0
 }

@@ -26,8 +26,9 @@ brew install tmux reattach-to-user-namespace vim git tig liquidprompt ack hh tre
 # Powerline: Fonts -> Dotfiles/powerline (Inconsolata, 18pt, ~%110 vertical)
 
 # Dev (install Xcode from App Store)
+# https://code.visualstudio.com/
 brew install ruby-install chruby node yarn postgresql wget ctags imagemagick awscli unar csvkit # dnsmasq go git-flow tmate colordiff pv gettext
-brew cask install visual-studio-code sourcetree gpg-suite slack google-chrome firefox skype imageoptim ngrok virtualbox # docker minikube macsvg
+brew cask install sourcetree gpg-suite slack google-chrome firefox skype imageoptim ngrok virtualbox # docker minikube macsvg
 # npm install -g bower
 pip3 install --user tmuxp
 pip3 install --user powerline-status
