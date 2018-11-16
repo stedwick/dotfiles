@@ -1,7 +1,7 @@
 export SYNCTA_ROOT="$DEV_ROOT/syncta"
 
 function syncta_ssh() {
-	eb ssh $AWS_EB_ENV -e "ssh -i ~/.ssh/c3-staging -L 5433:$RDS_URL:5432"
+  eb ssh $AWS_EB_ENV -e "ssh -i ~/.ssh/c3-staging -L 5433:$RDS_URL:5432 -L 5434:$RDS_STAGE_URL:5432"
 }
 
 function syncta_dump() {

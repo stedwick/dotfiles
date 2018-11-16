@@ -125,7 +125,9 @@ function rspec_changed() {
   fi
   git_diff=$(echo "$git_diff" | xargs -L1 basename | sed 's/\.rb/_spec.rb/' | grep '_spec\.' | xargs -L1 find spec -name)
   echo "$git_diff"
+  export COVERAGE=true
   echo "$git_diff" | xargs bin/rspec
+  unset COVERAGE
 }
 
 # Git
