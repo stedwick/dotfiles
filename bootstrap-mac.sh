@@ -9,8 +9,9 @@
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool YES
 mkdir ~/bin
 brew install bash figlet
-brew cask install bitwarden dropbox spotify iterm2 bowtie undercover keybase grandperspective handbrake
+brew cask install bitwarden dropbox spotify bowtie undercover keybase grandperspective handbrake
 
+# https://www.iterm2.com/
 # Opera: https://www.opera.com
 # Page Shadow: https://addons.opera.com/en/extensions/details/page-shadow/
 # Postgres: https://postgresapp.com/
@@ -28,7 +29,7 @@ brew install tmux reattach-to-user-namespace vim git tig liquidprompt ack hh tre
 # Dev (install Xcode from App Store)
 # https://code.visualstudio.com/
 brew install ruby-install chruby node yarn postgresql wget ctags imagemagick awscli unar csvkit # dnsmasq go git-flow tmate colordiff pv gettext
-brew cask install sourcetree gpg-suite slack google-chrome firefox skype imageoptim ngrok virtualbox # docker minikube macsvg
+brew cask install sourcetree gpg-suite slack google-chrome firefox skype imageoptim ngrok virtualbox postman # docker minikube macsvg
 # npm install -g bower
 pip3 install --user tmuxp
 pip3 install --user powerline-status
