@@ -99,6 +99,7 @@ function cd() {
   builtin cd "$@" || return
   [ -n "$(type -t chruby)" ] && [ -r ".ruby-version" ] && chruby "$(cat .ruby-version)"
 }
+[ -n "$(type -t chruby)" ] && chruby 2.5.1
 cd .
 
 function git_changed_files() {
