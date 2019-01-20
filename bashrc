@@ -46,7 +46,9 @@ fi
 if [ -n "$(type -t brew)" ]; then
   [ -d "$(brew --prefix)/opt/gettext/bin" ] && export PATH="$PATH:$(brew --prefix)/opt/gettext/bin"
   case "$BASH_VERSION" in
-    4.*) # Bash 4 (brew install bash)
+    5.*) # Bash 5 (brew install bash)
+      [ -r "$(brew --prefix)/share/bash-completion/bash_completion" ] && source "$(brew --prefix)/share/bash-completion/bash_completion" ;;
+    4.*) # Bash 4 (brew install bash, old)
       [ -r "$(brew --prefix)/share/bash-completion/bash_completion" ] && source "$(brew --prefix)/share/bash-completion/bash_completion" ;;
     3.*) # Bash 3 (masOS default)
       [ -r "$(brew --prefix)/etc/bash_completion" ] && source "$(brew --prefix)/etc/bash_completion" ;;
