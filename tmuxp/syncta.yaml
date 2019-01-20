@@ -38,3 +38,7 @@ windows:
     panes:
       - clear && git status && git branch && git tag
 
+  - window_name: rails
+    panes:
+      - clear && echo "bin/rails server"
+
