@@ -7,13 +7,17 @@ windows:
     panes:
       - clear && git status && git branch && git tag
 
-  - window_name: dev
+  - window_name: vim
     panes:
       - clear && vim .
 
-  - window_name: term
+  - window_name: irb
     panes:
       - clear && echo "bin/rails console"
+
+  - window_name: rails
+    panes:
+      - clear && echo "bin/rails server"
 
   - window_name: serv
     layout: tiled
@@ -37,8 +41,4 @@ windows:
   - window_name: prod
     panes:
       - clear && git status && git branch && git tag
-
-  - window_name: rails
-    panes:
-      - clear && echo "bin/rails server"
 
