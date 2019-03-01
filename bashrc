@@ -97,12 +97,12 @@ if [ -n "$(type -t brew)" ]; then
 fi
 
 # Ruby
-function cd() {
-  builtin cd "$@" || return
-  [ -n "$(type -t chruby)" ] && [ -r ".ruby-version" ] && chruby "$(cat .ruby-version)"
-}
+# function cd() {
+  # builtin cd "$@" || return
+  # [ -n "$(type -t chruby)" ] && [ -r ".ruby-version" ] && chruby "$(cat .ruby-version)"
+# }
 [ -n "$(type -t chruby)" ] && chruby 2.5.1
-cd .
+# cd .
 
 function git_changed_files() {
   git status -s | grep -v '^D' | cut -c 4- | sed 's/^.* -> //' | grep -v 'vendor/' | grep -v 'public/'
