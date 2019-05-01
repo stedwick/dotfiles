@@ -31,6 +31,7 @@ brew install tmux reattach-to-user-namespace vim git tig liquidprompt ack hh tre
 brew install ruby-install chruby node yarn postgresql wget ctags imagemagick awscli unar csvkit # dnsmasq go git-flow tmate colordiff pv gettext
 brew cask install sourcetree gpg-suite slack google-chrome firefox skype imageoptim ngrok virtualbox postman graphql-playground # docker minikube macsvg
 # npm install -g bower
+npm install -g newman
 pip3 install --user tmuxp
 pip3 install --user powerline-status
 ruby-install ruby # Update .ruby-version
