@@ -17,5 +17,8 @@
     "git.confirmSync": false,
     "diffEditor.renderSideBySide": false,
     "git.autofetch": true,
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "[sql]": {
+        "editor.defaultFormatter": "cymonk.sql-formatter"
+    }
 }
