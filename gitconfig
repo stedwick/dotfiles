@@ -9,5 +9,8 @@
 [core]
 	excludesfile = /Users/pbrocoum/.gitignore_global
 [mergetool "sourcetree"]
-	cmd = /private/var/folders/dx/scllptx93gxf_1hm66d8lccm0000gn/T/AppTranslocation/5FAC22CC-ACA3-42F8-9C7B-5F392AB4881B/d/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /private/var/folders/dx/scllptx93gxf_1hm66d8lccm0000gn/T/AppTranslocation/90612578-3188-484A-B165-68BA7227C61E/d/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[pager]
+	branch = false
+	tag = false

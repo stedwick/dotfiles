@@ -1,0 +1,7 @@
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_NODE_SHOW=false
+SPACESHIP_CHAR_SUFFIX=' '
+
+export DISABLE_AUTO_TITLE='true'
+
+[ -r "$HOME/.syncta.secret.sh" ] && source "$HOME/.syncta.secret.sh"
