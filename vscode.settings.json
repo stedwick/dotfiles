@@ -11,6 +11,7 @@
         ".env*": "shellscript",
         "*.local": "shellscript",
         "liquidpromptrc": "shellscript",
+        "zsh*": "shellscript",
         "vimrc*": "viml",
         "*pryrc": "ruby"
     },
