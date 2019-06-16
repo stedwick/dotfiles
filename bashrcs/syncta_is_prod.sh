@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-if [ -n "$(grep -e "^RDS" "$SYNCTA_ROOT/.env.local")" ]; then
+if [ -n "$(grep -e "^RDS" "/Users/pbrocoum/dev/syncta/.env.local")" ]; then
   echo " PRODUCTION "
 else
   echo "   "
