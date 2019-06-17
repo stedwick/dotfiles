@@ -10,8 +10,9 @@ unsetopt share_history
 
 export EDITOR="vim"
 export VISUAL="vim"
+export LESS="-eFRX"
 export GPG_TTY="$(tty)" # for GPG
-export PATH="$PATH:$HOME/bin"
+# export PATH="$PATH:$HOME/bin"
 export DISABLE_AUTO_TITLE='true'
 
 export RAILS_ENV="development"
