@@ -2,6 +2,31 @@ SPACESHIP_PROMPT_SEPARATE_LINE=false
 SPACESHIP_NODE_SHOW=false
 SPACESHIP_CHAR_SUFFIX=' '
 
+# Turn off all beeps
+unsetopt BEEP
+# Turn off autocomplete beeps
+# unsetopt LIST_BEEP
+
+export EDITOR="vim"
+export VISUAL="vim"
+export GPG_TTY="$(tty)" # for GPG
+export PATH="$PATH:$HOME/bin"
 export DISABLE_AUTO_TITLE='true'
 
+export RAILS_ENV="development"
+export RACK_ENV="development"
+
 [ -r "$HOME/.syncta.secret.sh" ] && source "$HOME/.syncta.secret.sh"
+
+alias z="clear"
+alias c="cat"
+alias e="vim"
+alias a="ack -i"
+alias aa="ack -i -A 5 -B 2"
+alias m="less -FX"
+alias j="jobs"
+alias cdiff="colordiff -u"
+alias gs="git status"
+alias gcs="git checkout staging"
+alias gcp="git checkout philip"
+alias gmm="git merge master"
