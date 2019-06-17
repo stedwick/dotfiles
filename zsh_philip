@@ -6,6 +6,7 @@ SPACESHIP_CHAR_SUFFIX=' '
 unsetopt BEEP
 # Turn off autocomplete beeps
 # unsetopt LIST_BEEP
+unsetopt share_history
 
 export EDITOR="vim"
 export VISUAL="vim"
@@ -17,8 +18,9 @@ export RAILS_ENV="development"
 export RACK_ENV="development"
 
 [ -r "$HOME/.syncta.secret.sh" ] && source "$HOME/.syncta.secret.sh"
+[ -r "$HOME/bin/z.sh" ] && source "$HOME/bin/z.sh"
 
-alias z="clear"
+alias zz="clear"
 alias c="cat"
 alias e="vim"
 alias a="ack -i"
