@@ -7,6 +7,8 @@ unsetopt BEEP
 # Turn off autocomplete beeps
 # unsetopt LIST_BEEP
 unsetopt share_history
+unsetopt listambiguous
+unalias rm
 
 export EDITOR="vim"
 export VISUAL="vim"
@@ -17,6 +19,8 @@ export DISABLE_AUTO_TITLE='true'
 
 export RAILS_ENV="development"
 export RACK_ENV="development"
+# export AWS_DEFAULT_PROFILE="eb-cli"
+# export AWS_PROFILE="eb-cli"
 
 [ -r "$HOME/.syncta.secret.sh" ] && source "$HOME/.syncta.secret.sh"
 [ -r "$HOME/bin/z.sh" ] && source "$HOME/bin/z.sh"
@@ -33,3 +37,6 @@ alias gs="git status"
 alias gcs="git checkout staging"
 alias gcp="git checkout philip"
 alias gmm="git merge master"
+
+# Fix completions
+# rm ~/.zcompdump*
