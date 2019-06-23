@@ -1,3 +1,4 @@
+---
 session_name: syncta
 start_directory: ~/dev/syncta
 
@@ -12,8 +13,8 @@ windows:
 
   - window_name: rails
     panes:
-      - echo "bin/rails console"
-      - echo "bin/rails server"
+      - sleep 3 && echo "bin/rails console"
+      - sleep 3 && echo "bin/rails server"
 
   - window_name: etc
     layout: tiled
@@ -21,8 +22,12 @@ windows:
       - /usr/local/opt/elasticsearch@2.4/bin/elasticsearch
       - cd ~/bin/adminer; php -S localhost:4002 adminer.php
       - sleep 3 && echo "bin/rails server"
-      - sleep 3 && echo && echo "browser-sync start --no-open --proxy \"http://lolbackflow.lvh.me:3000\" --port 4000 --files app"
-      - sleep 3 && echo && echo "eb ssh staging-philip-8a6d2c1 -e \"ssh -i ~/.ssh/c3-staging -L 5433:$C3PRODURL:5432\""
+      - >
+        sleep 3 && echo && echo "browser-sync start --no-open --proxy
+        \"http://lolbackflow.lvh.me:3000\" --port 4000 --files app"
+      - >
+        sleep 3 && echo && echo "eb ssh staging-philip-8a6d2c1 -e
+        \"ssh -i ~/.ssh/c3-staging -L 5433:$C3PRODURL:5432\""
       - sleep 3 && echo "bundle exec sidekiq"
 
   - window_name: dots
@@ -33,5 +38,5 @@ windows:
 
   - window_name: ssh
     panes:
-      - echo "eb ssh staging-philip-8a6d2c1"
-      - echo "eb ssh production-a-0a829b8 production-b-d1040dc"
+      - sleep 3 && echo "eb ssh staging-philip-8a6d2c1"
+      - sleep 3 && echo "eb ssh production-a-0a829b8 production-b-d1040dc"
