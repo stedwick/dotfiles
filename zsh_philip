@@ -38,5 +38,8 @@ alias gcs="git checkout staging"
 alias gcp="git checkout philip"
 alias gmm="git merge master"
 
+alias d="docker"
+alias ds="dirs -v"
+
 # Fix completions
 # rm ~/.zcompdump*
