@@ -30,12 +30,6 @@ windows:
         \"ssh -i ~/.ssh/c3-staging -L 5433:$C3PRODURL:5432\""
       - sleep 3 && echo "bundle exec sidekiq"
 
-  - window_name: dot
-    start_directory: ~/Dropbox/Dotfiles
-    panes:
-      - vim .
-      - git status && git branch
-
   - window_name: ssh
     panes:
       - sleep 3 && echo "eb ssh staging-philip-8a6d2c1"
@@ -45,3 +39,9 @@ windows:
     panes:
       - sleep 3 && echo "watch -t -n 10 'docker container ls -a && echo && docker images'"
       - sleep 3 && echo "d container prune -f && d image prune -f"
+
+  - window_name: dot
+    start_directory: ~/Dropbox/Dotfiles
+    panes:
+      - vim .
+      - git status && git branch
