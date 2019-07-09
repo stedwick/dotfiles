@@ -40,3 +40,8 @@ windows:
     panes:
       - sleep 3 && echo "eb ssh staging-philip-8a6d2c1"
       - sleep 3 && echo "eb ssh production-a-0a829b8 production-b-d1040dc"
+
+  - window_name: dkr
+    panes:
+      - sleep 3 && echo "watch -t -n 10 'docker container ls -a && echo && docker images'"
+      - sleep 3 && echo "d container prune -f && d image prune -f"
