@@ -11,7 +11,7 @@ windows:
     panes:
       - vim .
 
-  - window_name: rails
+  - window_name: rls
     panes:
       - sleep 3 && echo "bin/rails console"
       - sleep 3 && echo "bin/rails server"
@@ -30,7 +30,7 @@ windows:
         \"ssh -i ~/.ssh/c3-staging -L 5433:$C3PRODURL:5432\""
       - sleep 3 && echo "bundle exec sidekiq"
 
-  - window_name: dots
+  - window_name: dot
     start_directory: ~/Dropbox/Dotfiles
     panes:
       - vim .

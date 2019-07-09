@@ -2,6 +2,9 @@ SPACESHIP_PROMPT_SEPARATE_LINE=false
 SPACESHIP_NODE_SHOW=false
 SPACESHIP_CHAR_SUFFIX=' '
 
+bindkey '^[OA' history-beginning-search-backward
+bindkey '^[OB' history-beginning-search-forward
+
 # Turn off all beeps
 unsetopt BEEP
 # Turn off autocomplete beeps
