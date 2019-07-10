@@ -37,8 +37,8 @@ windows:
 
   - window_name: dkr
     panes:
-      - sleep 3 && echo "watch -t -n 10 'docker container ls -a && echo && docker images'"
-      - sleep 3 && echo "d container prune -f && d image prune -f"
+      - watch -t -n 10 'docker container ls -a && echo && docker images'
+      - sleep 3 && echo "docker container prune -f && docker image prune -f"
 
   - window_name: dot
     start_directory: ~/Dropbox/Dotfiles
