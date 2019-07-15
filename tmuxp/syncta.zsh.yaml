@@ -19,7 +19,7 @@ windows:
   - window_name: etc
     layout: tiled
     panes:
-      - /usr/local/opt/elasticsearch@2.4/bin/elasticsearch
+      - /usr/local/opt/elasticsearch@5.6/bin/elasticsearch
       - cd ~/bin/adminer; php -S localhost:4002 adminer.php
       - sleep 3 && echo "bin/rails server"
       - >
