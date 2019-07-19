@@ -44,7 +44,9 @@ alias gmm="git merge master"
 alias d="docker"
 alias ds="dirs -v"
 alias dc="docker-compose"
-alias dcs="docker-compose -f ./config/devops/docker-compose.cicd.yml --project-directory ."
+function dcs() {
+  docker-compose -f ./config/devops/docker-compose.cicd.yml --project-directory . "$@"
+}
 
 # Fix completions
 # rm ~/.zcompdump*
