@@ -35,6 +35,7 @@ alias a="ack -i"
 alias aa="ack -i -A 5 -B 2"
 # alias m="less -FX"
 alias j="jobs"
+alias ds="dirs -v"
 alias cdiff="colordiff -u"
 alias gs="git status"
 alias gcs="git checkout staging"
@@ -42,10 +43,30 @@ alias gcp="git checkout philip"
 alias gmm="git merge master"
 
 alias d="docker"
-alias ds="dirs -v"
 alias dc="docker-compose"
-function dcs() {
-  docker-compose -f ./config/devops/docker-compose.cicd.yml --project-directory . "$@"
+function dct() {
+  docker-compose -f ./config/devops/docker-compose.test.yml --project-directory . "$@"
+}
+function docker-tags () {
+  name=$1
+  # Initial URL
+  url=https://registry.hub.docker.com/v2/repositories/$name/tags/?page_size=100
+  (
+    # Keep looping until the variable URL is empty
+    while [ ! -z $url ]; do
+      # Every iteration of the loop prints out a single dot to show progress as it got through all the pages (this is inline dot)
+      >&2 echo -n "."
+      # Curl the URL and pipe the output to Python. Python will parse the JSON and print the very first line as the next URL (it will leave it blank if there are no more pages)
+      # then continue to loop over the results extracting only the name; all will be stored in a variable called content
+      content=$(curl -s $url | python -c 'import sys, json; data = json.load(sys.stdin); print(data.get("next", "") or ""); print("\n".join([x["name"] for x in data["results"]]))')
+      # Let's get the first line of content which contains the next URL for the loop to continue
+      url=$(echo "$content" | head -n 1)
+      # Print the content without the first line (yes +2 is counter intuitive)
+      echo "$content" | tail -n +2
+    done;
+    # Finally break the line of dots
+    >&2 echo
+  ) | sort --version-sort | uniq;
 }
 
 # Fix completions
