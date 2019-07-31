@@ -22,6 +22,7 @@ export DISABLE_AUTO_TITLE='true'
 
 export RAILS_ENV="development"
 export RACK_ENV="development"
+export SYNCTA_DOCKER_IMG_BASE="syncta/main-rails:FLOW326movefromsemaphoretokubernet"
 # export AWS_DEFAULT_PROFILE="eb-cli"
 # export AWS_PROFILE="eb-cli"
 
