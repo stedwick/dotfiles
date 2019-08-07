@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+function git_changed_files() {
+  git status -s | grep -v '^D' | cut -c 4- | sed 's/^.* -> //' | grep -v 'vendor/' | grep -v 'public/'
+}
+
+function rubocop_changed() {
+  if [ -n "$GIT_CHANGED_FILES" ]; then
+    git_diff="$GIT_CHANGED_FILES"
+  else
+    git_diff="$(git_changed_files)"
+  fi
+  git_diff=$(echo "$git_diff" | grep '\.rb')
+  echo "$git_diff"
+  echo "$git_diff" | xargs bundle exec rubocop -a --force-exclusion
+  echo "$git_diff" | xargs bundle exec rubocop -a --force-exclusion
+}
+
+rubocop_changed
+git diff --quiet --
