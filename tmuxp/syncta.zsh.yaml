@@ -37,7 +37,7 @@ windows:
 
   - window_name: dkr
     panes:
-      - watch -t -n 10 'docker container ls -a && echo && docker images'
+      - watch -t -n 10 'docker container ls -a --format "table {{.Image}}\t{{.Command}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}" && echo && docker images'
       - sleep 3 && echo "docker container prune -f && docker image prune -f && docker volume prune -f"
 
   - window_name: dot
