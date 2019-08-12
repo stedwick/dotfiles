@@ -57,6 +57,9 @@ function dct() {
   docker-compose -f ./config/devops/docker-compose.test.yml --project-directory . "$@"
 }
 function db-smr() {
+  rm -rf tmp
+  mkdir -p tmp
+  touch tmp/.keep
   export_syncta
   docker build -t "$SYNCTA_DOCKER_IMG_BASE" --build-arg "BUNDLE_GEMS__CONTRIBSYS__COM" .
   docker container prune -f && docker image prune -f && docker volume prune -f
