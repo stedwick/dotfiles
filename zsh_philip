@@ -20,14 +20,15 @@ export GPG_TTY="$(tty)" # for GPG
 # export PATH="$PATH:$HOME/bin"
 export DISABLE_AUTO_TITLE='true'
 
-export RAILS_ENV="development"
 export RACK_ENV="development"
-export SYNCTA_DOCKER_IMG_BASE="quay.io/syncta/main-rails:FLOW326movefromsemaphoretokubernet"
-# export AWS_DEFAULT_PROFILE="eb-cli"
-# export AWS_PROFILE="eb-cli"
+export RAILS_ENV="development"
 
 [ -r "$HOME/.syncta.secret.sh" ] && source "$HOME/.syncta.secret.sh"
 [ -r "$HOME/bin/z.sh" ] && source "$HOME/bin/z.sh"
+function export_syncta() {
+  export SYNCTA_GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD | tr -cd '[a-zA-Z0-9]'| cut -c 1-40)"
+  export SYNCTA_DOCKER_IMG_BASE="quay.io/syncta/main-rails:${SYNCTA_GIT_BRANCH}"
+}
 
 alias zz="clear"
 alias c="cat"
@@ -43,11 +44,24 @@ alias gcs="git checkout staging"
 alias gcp="git checkout philip"
 alias gmm="git merge master"
 
-alias d="docker"
-alias dc="docker-compose"
+function d() {
+  export_syncta
+  docker "$@"
+}
+function dc() {
+  export_syncta
+  docker-compose "$@"
+}
 function dct() {
+  export_syncta
   docker-compose -f ./config/devops/docker-compose.test.yml --project-directory . "$@"
 }
+function db-smr() {
+  export_syncta
+  docker build -t "$SYNCTA_DOCKER_IMG_BASE" --build-arg "BUNDLE_GEMS__CONTRIBSYS__COM" .
+  docker container prune -f && docker image prune -f && docker volume prune -f
+}
+
 function docker-tags () {
   name=$1
   # Initial URL
