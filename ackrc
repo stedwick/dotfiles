@@ -2,5 +2,7 @@
 --ignore-file=match:/.*history/
 --ignore-directory=.git
 --ignore-directory=log
+--ignore-directory=spec/factories/puffing_billy_cache
+--ignore-directory=spec/factories/paperclip
 --ignore-directory=tmp
-
+--ignore-directory=vendor
