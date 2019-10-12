@@ -17,7 +17,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 export LESS="-FRX"
 export GPG_TTY="$(tty)" # for GPG
-# export PATH="$PATH:$HOME/bin"
+export PATH="/usr/local/sbin:$HOME/bin:$PATH"
 export DISABLE_AUTO_TITLE='true'
 
 export RACK_ENV="development"
